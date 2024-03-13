@@ -15,7 +15,7 @@ class InventorySeeder extends Seeder
     {
         Inventory::create([
             "amount"=> 100,
-            
+            "product_id"=>1,
         ]);
     }
 }

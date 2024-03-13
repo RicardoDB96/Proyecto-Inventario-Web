@@ -18,9 +18,8 @@ return new class extends Migration
             $table->foreign('inventory_id')->references('id')->on('inventories');
             $table->integer('amount')->comment('Unidades totales');
             $table->integer('delta_amount')->comment('Unidades compradas/vendidas');
-            $table->string('movement',255)->comment('Movimiento hecho');
-            $table->integer('product_id')->unsigned()->comment('Producto');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('movement_id')->unsigned()->comment('Movimiento hecho');
+            $table->foreign('movement_id')->references('id')->on('inventory_movements');
             
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');

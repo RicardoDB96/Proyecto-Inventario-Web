@@ -13,8 +13,8 @@ class InventoryMovementSeeder extends Seeder
      */
     public function run(): void
     {
-        IventoryMovement::create([
-            "name"=>"",
+        InventoryMovement::create([
+            "name"=>"Transferencia",
         
         ]);
     }
