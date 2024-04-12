@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -12,11 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('operations', function (Blueprint $table) {
-            
+
             //FUNCTIONS INVENTORY SYSTEM
             $table->increments('id')->comment('Función');
             $table->string('name',255)->comment('Nombre de la función');
-             
+
             //Datos de creación y modificación
 		    $table->string('notes', 1024)->nullable()->comment('Notas');
 			$table->boolean('is_active')->default(1)->comment('Muestra si la fila está activa');

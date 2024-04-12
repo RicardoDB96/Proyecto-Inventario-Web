@@ -4,37 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         // Obtener todos los productos
-        $products = Product::all();
+        $products = Product::latest()->paginate(6);
 
-        foreach($products as $product){
-            echo($product->id.'  '.$product->name.'<br>');
-        };
+        return view('products.index',['products'=>$products]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view(('products.create'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+
+        $request->validate([
+            'name' =>'required',
+            'is_active' => 'required',
+        ]);
+
+        Product::create($request->all());
+        return redirect()->route('products.index')->with('success','Nuevo Producto creado exitosamente!');
     }
 
     /**
@@ -52,24 +59,34 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $product = Product::where('id', $id)->first();
+        return view('products.edit', ['product' => $product]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' =>'required',
+            'is_active' => 'required',
+        ]);
+
+        $product = Product::where('id', $id)->first();
+        $product->update($request->all());
+        return redirect()->route('products.index')->with('success','Tu producto se ha actualizado exitosamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $product = Product::where('id', $id)->first();
+        $product->delete();
+        return redirect()->route('products.index')->with('success','Tu producto se ha eliminado exitosamente!');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->foreign('permission_id')->references('id')->on('permissions');
             $table->integer('role_id')->unsigned()->comment('Rol');
             $table->foreign('role_id')->references('id')->on('roles');
-            
+
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');
 			$table->boolean('is_active')->default(1)->comment('Muestra si la fila está activa');

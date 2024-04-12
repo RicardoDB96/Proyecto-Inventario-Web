@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->integer('delta_amount')->comment('Unidades compradas/vendidas');
             $table->integer('movement_id')->unsigned()->comment('Movimiento hecho');
             $table->foreign('movement_id')->references('id')->on('inventory_movements');
-            
+
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');
 			$table->boolean('is_active')->default(1)->comment('Muestra si la fila está activa');

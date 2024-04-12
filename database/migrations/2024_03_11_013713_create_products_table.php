@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -18,9 +19,9 @@ return new class extends Migration
             $table->string('description',255)->nullable()->comment('Descripción del producto');
             $table->float('base_price',12,4)->nullable()->comment('Precio del producto');
             $table->float('base_cost',12,4)->nullable()->comment('Costo del producto');
-            $table->integer('category_id')->unsigned()->comment('Categoría');
+            $table->integer('category_id')->nullable()->unsigned()->comment('Categoría');
             $table->foreign('category_id')->references('id')->on('categories');
-            
+
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');
 			$table->boolean('is_active')->default(1)->comment('Muestra si la fila está activa');
