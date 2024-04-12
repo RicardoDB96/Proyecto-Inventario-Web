@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
@@ -11,7 +12,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return 'estoy en el product controller de supplier';
+        $suppliers = Supplier::all();
+        return view('suppliers.index', ['suppliers' => $suppliers]);
     }
 
     /**
@@ -19,7 +21,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create');
     }
 
     /**
@@ -27,7 +29,16 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'contact_phone' => 'required',
+        ]);
+    
+        Supplier::create($request->all());
+    
+        return redirect()->route('suppliers.index')
+                         ->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -43,7 +54,8 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -51,7 +63,17 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'contact_phone' => 'required',
+        ]);
+    
+        $supplier = Supplier::findOrFail($id);
+        $supplier->update($request->all());
+    
+        return redirect()->route('suppliers.index')
+                         ->with('success', 'Supplier updated successfully.');
     }
 
     /**
@@ -59,6 +81,10 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+
+        return redirect()->route('suppliers.index')
+                     ->with('success', 'Supplier deleted successfully.');
     }
 }
