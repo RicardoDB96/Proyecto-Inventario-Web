@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -11,7 +12,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return 'estoy en el product controller de usuario';
+        // Obtenemos todos los usuarios
+        $users = User::all();
+        return view('users.index', ['users'=>$users]);
     }
 
     /**
@@ -19,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -27,7 +30,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role_id' => 'required'
+        ]);
+
+        User::create($request->all());
+    
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -43,7 +56,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('users.edit', ['user'=>$user]);
     }
 
     /**
@@ -51,7 +65,16 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'role_id' => 'required'
+        ]);
+    
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+    
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -59,6 +82,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }

@@ -36,48 +36,5 @@ class ProductSeeder extends Seeder
             "base_cost"=>100,
             "category_id"=>1,
         ]);
-
-        Product::create([
-            "name"=>"Nieve chocolate",
-            "description"=>"La nieve de chocolate está hecha de leche, crema, azúcar y cacao en polvo o chocolate derretido.",
-            "base_price"=>100,
-            "base_cost"=>100,
-            "category_id"=>1,
-        ]);
-
-        Product::create([
-            "name"=>"Nieve chocolate",
-            "description"=>"La nieve de chocolate está hecha de leche, crema, azúcar y cacao en polvo o chocolate derretido.",
-            "base_price"=>100,
-            "base_cost"=>100,
-            "category_id"=>1,
-        ]);
-
-
-        Product::create([
-            "name"=>"Nieve chocolate",
-            "description"=>"La nieve de chocolate está hecha de leche, crema, azúcar y cacao en polvo o chocolate derretido.",
-            "base_price"=>100,
-            "base_cost"=>100,
-            "category_id"=>1,
-        ]);
-
-
-        Product::create([
-            "name"=>"Nieve chocolate",
-            "description"=>"La nieve de chocolate está hecha de leche, crema, azúcar y cacao en polvo o chocolate derretido.",
-            "base_price"=>100,
-            "base_cost"=>100,
-            "category_id"=>1,
-        ]);
-
-
-        Product::create([
-            "name"=>"Nieve chocolate",
-            "description"=>"La nieve de chocolate está hecha de leche, crema, azúcar y cacao en polvo o chocolate derretido.",
-            "base_price"=>100,
-            "base_cost"=>100,
-            "category_id"=>1,
-        ]);
     }
 }
