@@ -2,32 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Role;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        return 'estoy en el product controller de roles';
+        // Obtener todos los roles
+        $roles = Role::latest()->paginate(6);
+
+        return view('roles.index',['roles'=>$roles]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view(('roles.create'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' =>'required',
+            'is_active' => 'required',
+        ]);
+
+        Role::create($request->all());
+        return redirect()->route('roles.index')->with('success','Se ha creado un nuevo Rol exitosamente!');
     }
 
     /**
@@ -35,30 +48,43 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        // Obtener el Rol por su ID
+        $role = Role::where('id', $id)->first();
 
+        // Pasar los datos del producto a la vista
+        return $role->id.'  '.$role->name.'<br>';
+    }
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $role = Role::where('id', $id)->first();
+        return view('roles.edit', ['role' => $role]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' =>'required',
+            'is_active' => 'required',
+        ]);
+
+        $role = Role::where('id', $id)->first();
+        $role->update($request->all());
+        return redirect()->route('roles.index')->with('success','El rol se ha actualizado exitosamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect()->route('roles.index')->with('success','El rol se ha eliminado exitosamente!');
     }
 }
