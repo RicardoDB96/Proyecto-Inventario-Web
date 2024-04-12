@@ -17,5 +17,15 @@ class InventorySeeder extends Seeder
             "amount"=> 100,
             "product_id"=>1,
         ]);
+
+        Inventory::create([
+            "amount"=> 120,
+            "product_id"=>3,
+        ]);
+
+        Inventory::create([
+            "amount"=> 140,
+            "product_id"=>2,
+        ]);
     }
 }

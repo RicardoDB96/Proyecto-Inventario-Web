@@ -16,7 +16,7 @@ return new class extends Migration
             //INVENTORIES INVENTORY SYSTEM
             $table->increments('id')->comment('Inventario');
             $table->integer('amount')->comment('Unidades totales');
-            $table->integer('product_id')->unsigned()->comment('Producto');
+            $table->integer('product_id')->nullable()->unsigned()->comment('Producto');
             $table->foreign('product_id')->references('id')->on('products');
 
             //Datos de creación y modificación
