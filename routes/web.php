@@ -27,6 +27,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('login', 'auth.login');
+
 Route::resource('products', ProductController::class);
 Route::resource('users', UserController::class);
 Route::resource('suppliers', SupplierController::class);
