@@ -11,6 +11,7 @@ use App\Http\Controllers\InventoryMovementController;
 use App\Http\Controllers\InventoryLogController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,17 +24,28 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome')->middleware('auth');
 
-Route::resource('products', ProductController::class);
-Route::resource('users', UserController::class);
-Route::resource('suppliers', SupplierController::class);
-Route::resource('roles', RoleController::class);
-Route::resource('operations', OperationController::class);
-Route::resource('modules', ModuleController::class);
-Route::resource('inventory_movements', InventoryMovementController::class);
-Route::resource('inventory_logs', InventoryLogController::class);
-Route::resource('inventories', InventoryController::class);
-Route::resource('categories', CategoryController::class);
+// Rutas de login
+Route::view('login', 'auth.login')->name('login')->middleware('guest');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
+
+// Restablecer contraseña
+Route::view('reset', 'auth.reset')->name('reset');
+Route::view('reset-password', 'auth.password')->name('password');
+Route::view('done-password', 'auth.done')->name('done');
+Route::view('updated-password', 'auth.updated')->name('updated');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('products', ProductController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('operations', OperationController::class);
+    Route::resource('modules', ModuleController::class);
+    Route::resource('inventory_movements', InventoryMovementController::class);
+    Route::resource('inventory_logs', InventoryLogController::class);
+    Route::resource('inventories', InventoryController::class);
+    Route::resource('categories', CategoryController::class);
+});
