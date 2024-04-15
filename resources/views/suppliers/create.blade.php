@@ -12,8 +12,8 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="background-color: #E9E6DD;">
-                <div class="card-header d-flex justify-content-start" style="background-color: #C4AD9D;">
+            <div class="card">
+                <div class="card-header d-flex justify-content-start">
                     <h4 class="mb-0">ADD NEW SUPPLIER</h4>
                 </div>
                 <div class="card-body">
@@ -23,28 +23,28 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name:</label>
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Supplier Name" style="background-color: #D7D7D7;">
+                                <input type="text" name="name" class="form-control" placeholder="Supplier Name">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address:</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" style="height:150px; background-color: #D7D7D7;" name="address" placeholder="Address..."></textarea>
+                                <textarea class="form-control" style="height:150px; name="address" placeholder="Address..."></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="contact_phone" class="col-md-4 col-form-label text-md-right">Phone Number:</label>
                             <div class="col-md-6">
-                                <input type="text" name="contact_phone" class="form-control" placeholder="Phone Number" style="background-color: #D7D7D7;">
+                                <input type="text" name="contact_phone" class="form-control" placeholder="Phone Number">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="is_active" class="col-md-4 col-form-label text-md-right">Status:</label>
                             <div class="col-md-6">
-                                <select name="is_active" class="form-select" id="" style="background-color: #D7D7D7;">
+                                <select name="is_active" class="form-select" id="">
                                     <option value="">-- Elige el status --</option>
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>

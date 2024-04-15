@@ -27,7 +27,6 @@
                     <th>Last Name</th>
                     <th>Role</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Status</th>
                     <th>Created_at</th>
                     <th>Actions</th>
@@ -42,7 +41,6 @@
                         <th>{{$user->last_name}}</th>
                         <th>{{$user->role_id}}</th>
                         <th>{{$user->email}}</th>
-                        <th>{{$user->password}}</th>
                         <th>
                             @if ($user->is_active)
                                 <span class="badge bg-success fs-6">Activo</span>

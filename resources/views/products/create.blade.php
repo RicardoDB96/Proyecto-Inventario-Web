@@ -12,8 +12,8 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="background-color: #E9E6DD;">
-                <div class="card-header d-flex justify-content-start" style="background-color: #C4AD9D;">
+            <div class="card">
+                <div class="card-header d-flex justify-content-start">
                     <h4 class="mb-0">ADD NEW PRODUCT</h4>
                 </div>
                 <div class="card-body">
@@ -23,35 +23,35 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name:</label>
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Product Name" style="background-color: #D7D7D7;">
+                                <input type="text" name="name" class="form-control" placeholder="Product Name">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description:</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" style="height:150px; background-color: #D7D7D7;" name="description" placeholder="Description..."></textarea>
+                                <textarea class="form-control" style="height:150px;" name="description" placeholder="Description..."></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="base_price" class="col-md-4 col-form-label text-md-right">Base Price:</label>
                             <div class="col-md-6">
-                                <input type="text" name="base_price" class="form-control" placeholder="Base Price" style="background-color: #D7D7D7;">
+                                <input type="text" name="base_price" class="form-control" placeholder="Base Price">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="base_cost" class="col-md-4 col-form-label text-md-right">Base Cost:</label>
                             <div class="col-md-6">
-                                <input type="text" name="base_cost" class="form-control" placeholder="Base Cost" style="background-color: #D7D7D7;">
+                                <input type="text" name="base_cost" class="form-control" placeholder="Base Cost">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="category_id" class="col-md-4 col-form-label text-md-right">Category:</label>
                             <div class="col-md-6">
-                                <select name="category_id" class="form-select" id="" style="background-color: #D7D7D7;">
+                                <select name="category_id" class="form-select" id="">
                                     <option value="">-- Elige la categoría --</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -63,7 +63,7 @@
                         <div class="form-group row">
                             <label for="is_active" class="col-md-4 col-form-label text-md-right">Status:</label>
                             <div class="col-md-6">
-                                <select name="is_active" class="form-select" id="" style="background-color: #D7D7D7;">
+                                <select name="is_active" class="form-select" id="">
                                     <option value="">-- Elige el status --</option>
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>

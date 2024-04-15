@@ -12,8 +12,8 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="background-color: #E9E6DD;">
-                <div class="card-header" style="background-color: #C4AD9D;">
+            <div class="card">
+                <div class="card-header">
                     <h4 class="mb-0 text-start">ADD NEW CATEGORY</h4>
                 </div>
                 <div class="card-body">
@@ -23,14 +23,14 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name:</label>
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Category Name" style="background-color: #D7D7D7;">
+                                <input type="text" name="name" class="form-control" placeholder="Category Name">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="is_active" class="col-md-4 col-form-label text-md-right">Status:</label>
                             <div class="col-md-6">
-                                <select name="is_active" class="form-select" id="" style="background-color: #D7D7D7;">
+                                <select name="is_active" class="form-select" id="">
                                     <option value="">-- Elige el status --</option>
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>

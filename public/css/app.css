@@ -1,177 +1,192 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Helvetica;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  /*HEADER Y BOTONES*/
-
-  .header {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    background-color: #f57251;
-    align-items: center;
-    text-align: center;
-  }
-
-  .header .headerSeccion{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0em 1em;
-  }
-
-
-  .header .headerSeccion button {
-    padding: 1em;
-    font-weight: 700;
-    background-color: #f57251;
-    color: black;
-    border: none;
-    cursor: pointer;
-  }
-
-  .header .headerSeccion button:hover {
-    background-color: #c4ad9d
-  }
-
-  .header .titlePage {
-    font-size:large;
-  }
-
-  .header .time {
-    font-size: small;
-    color: black;
-    text-align: center;
-
-  }
-
-
-  /*CONTENIDO*/
-
-
-  .wrapper{
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    flex: 1;
-
-  }
-
-  /*BARRA DE NAVEGACION*/
-
-.barside{
-    background-color: #e9e6dd;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica;
 }
 
-.barside .barSections{
-    padding-left: 0em;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*HEADER Y BOTONES*/
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  background-color: #f57251;
+  align-items: center;
+  text-align: center;
+}
+
+.header .headerSeccion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 1em;
 }
 
 
-.barside .barSections li{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: left;
-
+.header .headerSeccion button {
+  padding: 1em;
+  font-weight: 700;
+  background-color: #f57251;
+  color: black;
+  border: none;
+  cursor: pointer;
 }
 
-.barside .barSections li a{
-    padding: 0.5em 3em;
-    text-decoration: none;
-    color: grey;
-    font-size: small;
-
+.header .headerSeccion button:hover {
+  background-color: #c4ad9d
 }
 
-.barside .barSections li .titleSeccion{
-
-    font-weight:lighter;
-    font-size: large;
-    color: black;
-
+.header .titlePage {
+  font-size: large;
 }
 
-.wth{
-    padding: 1em 2em;
+.header .time {
+  font-size: small;
+  color: black;
+  text-align: center;
 
 }
 
 
-.barside .barSections li a:hover{
-    background-color: #c4ad9d;
+/*CONTENIDO*/
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  flex: 1;
+
+}
+
+/*BARRA DE NAVEGACION*/
+
+.barside {
+  background-color: #e9e6dd;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+}
+
+.barside .barSections {
+  padding-left: 0em;
+}
+
+
+.barside .barSections li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+
+}
+
+.barside .barSections li a {
+  padding: 0.5em 3em;
+  text-decoration: none;
+  color: grey;
+  font-size: small;
+
+}
+
+.barside .barSections li .titleSeccion {
+
+  font-weight: lighter;
+  font-size: large;
+  color: black;
+
+}
+
+.wth {
+  padding: 1em 2em;
+
+}
+
+
+.barside .barSections li a:hover {
+  background-color: #c4ad9d;
 }
 
 
 /*SECCION DEL INDEX */
 
-.index{
-    display: grid;
-    grid-template-rows: 1fr 1fr 10fr;
+.index {
+  display: grid;
+  grid-template-rows: 1fr 1fr 10fr;
 }
 
 /*TOP & MID PALACE*/
 .place {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    padding: 0em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0em 2em;
 }
 
 /*TOP*/
 
 
 
-.place  .button{
-    padding: 1em;
-    font-weight: 700;
-    background-color: #f57251;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 0.5em;
-    cursor: pointer;
+.place .button {
+  padding: 1em;
+  font-weight: 700;
+  background-color: #f57251;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
 }
 
-.place  .button:hover{
-    background-color: #f57251ad;
+.place .button:hover {
+  background-color: #f57251ad;
 }
 
 /*MID*/
 
-.place .searchBox{
-    position: relative;
-    width: 25em;
+.place .searchBox {
+  position: relative;
+  width: 25em;
 }
 
-.place input{
-    width: 100%;
-    padding: 1em;
+.place input {
+  width: 100%;
+  padding: 1em;
 
 }
 
-.place select{
-    padding: 1em;
-    font-weight: 700;
-    color: rgb(0, 0, 0);
-    border-radius: 0.5em;
-    cursor: pointer;
+.place select {
+  padding: 1em;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  border-radius: 0.5em;
+  cursor: pointer;
 }
 
 /*TABLA*/
 
+div.card {
+  background-color: #E9E6DD;
+}
 
+div.card-header {
+  background-color: #C4AD9D;
+}
 
+input.form-control,
+textarea.form-control,
+select.form-select {
+  background-color: #D7D7D7;
+}
 
+input.form-control:focus,
+textarea.form-control:focus {
+  background-color: #D7D7D7;
+}
