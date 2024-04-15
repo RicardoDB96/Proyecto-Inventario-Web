@@ -1,20 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
-</head>
-<body>
-    <div class="container">
-        <h2>Add Category</h2>
-        <form action="{{ route('categories.store') }}" method="POST">
-            @csrf
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br><br>
-            <button type="submit">Submit</button>
-            <a href="{{ route('categories.index') }}"><button type="button">Cancel</button></a>
-        </form>
-    </div>
-</body>
-</html>
+@extends('layouts.base')
+
+@section('content')
+
+
+<div class="place">
+    <h1>Crear Category</h1>
+
+</div>
+<div class="place">
+    <a href="{{route('categories.index')}}" class="linkButton"><button class="button">VOLVER</button></a>
+</div>
+
+
+<div >
+
+    <form action="{{route('categories.store')}}" method="POST">
+        @csrf
+        <div >
+
+            <div class="col-xs-10 col-sm-10 col-md-10 mt-1">
+                <div class="form-group">
+                    <strong>Name:</strong>
+                    <input type="text" name="name" class="form-control" placeholder="Category Name" >
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-4 mt-1">
+                <div class="form-group">
+                    <strong>Status:</strong>
+                    <select name="is_active" class="form-select" id="">
+                        <option value="">-- Elige el status --</option>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 text-center mt-1">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </form>
+</div>
+@endsection
+
+
+

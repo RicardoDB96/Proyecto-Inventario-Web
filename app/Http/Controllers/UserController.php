@@ -2,45 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        // Obtenemos todos los usuarios
-        $users = User::all();
-        return view('users.index', ['users'=>$users]);
+        // Obtener todos los productos
+        $users = User::latest()->paginate(6);
+
+        return view('users.index',['users'=>$users]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        return view('users.create');
+        return view(('users.create'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role_id' => 'required'
+            'name' =>'required',
+            'is_active' => 'required',
         ]);
 
         User::create($request->all());
-    
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('users.index')->with('success','Nuevo User creado exitosamente!');
     }
 
     /**
@@ -48,43 +49,44 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Obtener el producto por su ID
+        $user = User::where('id', $id)->first();
+
+        // Pasar los datos del producto a la vista
+        return $user->id.'  '.$user->name.'<br>';
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        $user = User::findOrFail($id);
-        return view('users.edit', ['user'=>$user]);
+        $user = User::where('id', $id)->first();
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'role_id' => 'required'
+            'name' =>'required',
+            'is_active' => 'required',
         ]);
-    
-        $user = User::findOrFail($id);
+
+        $user = User::where('id', $id)->first();
         $user->update($request->all());
-    
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('users.index')->with('success','Tu User se ha actualizado exitosamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        $user = User::findOrFail($id);
+        $user = User::where('id', $id)->first();
         $user->delete();
-
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('users.index')->with('success','Tu User se ha eliminado exitosamente!');
     }
 }

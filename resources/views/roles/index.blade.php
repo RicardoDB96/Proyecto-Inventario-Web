@@ -1,28 +1,29 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div>
-            <h2 class="text-white">CRUD de Roles</h2>
+    <div class="place">
+        <h1>Roles</h1>
+        <a href="{{route('roles.create')}}" class="linkButton"><button class="button">NEW ROLE</button></a>
+    </div>
+    <div class="place">
+        <div class="searchBox">
+            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
         </div>
-        <div>
-            <a href="{{route('roles.create')}}" class="btn btn-primary">Crear rol</a>
-        </div>
+
+        <select name="categorias">
+            <option value="">-- Buscar por: --</option>
+            <option value="1">Nombre</option>
+            <option value="2">Fecha</option>
+            <option value="3">Cantidad</option>
+        </select>
     </div>
 
-    @if (Session::get('success'))
-        <div class="alert alert-success mt-4">
-            <strong>{{Session::get('success')}}</strong>
-        </div>
-    @endif
-
-    <div class="col-12 mt-4">
-        <table class="table table-bordered text-white">
+    <div>
+        <table class="table table-bordered text-black">
             <thead>
                 <tr class="text-secondary">
                     <th>Id</th>
-                    <th>Role Name</th>
+                    <th>Name</th>
                     <th>Status</th>
                     <th>Created_at</th>
                     <th>Actions</th>
@@ -63,5 +64,4 @@
         </table>
         {{$roles->links()}}
     </div>
-</div>
 @endsection

@@ -15,7 +15,7 @@ class RoleController extends Controller
      */
     public function index(): View
     {
-        // Obtener todos los roles
+        // Obtener todos los productos
         $roles = Role::latest()->paginate(6);
 
         return view('roles.index',['roles'=>$roles]);
@@ -34,13 +34,14 @@ class RoleController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' =>'required',
             'is_active' => 'required',
         ]);
 
         Role::create($request->all());
-        return redirect()->route('roles.index')->with('success','Se ha creado un nuevo Rol exitosamente!');
+        return redirect()->route('roles.index')->with('success','Nuevo Rol creado exitosamente!');
     }
 
     /**
@@ -48,12 +49,13 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        // Obtener el Rol por su ID
+        // Obtener el producto por su ID
         $role = Role::where('id', $id)->first();
 
         // Pasar los datos del producto a la vista
         return $role->id.'  '.$role->name.'<br>';
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -75,7 +77,7 @@ class RoleController extends Controller
 
         $role = Role::where('id', $id)->first();
         $role->update($request->all());
-        return redirect()->route('roles.index')->with('success','El rol se ha actualizado exitosamente!');
+        return redirect()->route('roles.index')->with('success','Tu Rol se ha actualizado exitosamente!');
     }
 
     /**
@@ -83,8 +85,8 @@ class RoleController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        $role = Role::findOrFail($id);
+        $role = Role::where('id', $id)->first();
         $role->delete();
-        return redirect()->route('roles.index')->with('success','El rol se ha eliminado exitosamente!');
+        return redirect()->route('roles.index')->with('success','Tu Rol se ha eliminado exitosamente!');
     }
 }

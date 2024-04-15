@@ -1,36 +1,26 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div>
-            <h2>Editar Inventory</h2>
-        </div>
-        <div>
-            <a href="{{route('inventories.index')}}" class="btn btn-primary">Volver</a>
-        </div>
-    </div>
 
-    @if ($errors->any())
-    <div class="alert alert-danger mt-4">
-        <strong>Por las chancas de mi madre!</strong> Algo fue mal..<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+<div class="place">
+    <h1>Editar Inventory</h1>
+
+</div>
+<div class="place">
+    <a href="{{route('inventories.index')}}" class="linkButton"><button class="button">VOLVER</button></a>
+</div>
+
+<div >
 
     <form action="{{route('inventories.update', $inventory)}}" method="POST">
         @csrf
         @method('PUT')
-        <div class="row">
+        <div >
 
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group">
                     <strong>Product Name:</strong>
-                    <input type="text" name="product_id" class="form-control" placeholder="Product Name" value="{{$inventory->product_id}}" >
+                    <input type="text" name="product_id" class="form-control" placeholder="Inventory Name" value="{{$inventory->product_id}}" >
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">

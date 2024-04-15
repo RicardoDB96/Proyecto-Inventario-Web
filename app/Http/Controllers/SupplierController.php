@@ -2,43 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Supplier;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $suppliers = Supplier::all();
-        return view('suppliers.index', ['suppliers' => $suppliers]);
+        // Obtener todos los productos
+        $suppliers = Supplier::latest()->paginate(6);
+
+        return view('suppliers.index',['suppliers'=>$suppliers]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        return view('suppliers.create');
+        return view(('suppliers.create'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'contact_phone' => 'required',
+            'name' =>'required',
+            'is_active' => 'required',
         ]);
-    
+
         Supplier::create($request->all());
-    
-        return redirect()->route('suppliers.index')
-                         ->with('success', 'Supplier created successfully.');
+        return redirect()->route('suppliers.index')->with('success','Nuevo Supplier creado exitosamente!');
     }
 
     /**
@@ -46,45 +49,44 @@ class SupplierController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Obtener el producto por su ID
+        $supplier = Supplier::where('id', $id)->first();
+
+        // Pasar los datos del producto a la vista
+        return $supplier->id.'  '.$supplier->name.'<br>';
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        $supplier = Supplier::findOrFail($id);
-        return view('suppliers.edit', compact('supplier'));
+        $supplier = Supplier::where('id', $id)->first();
+        return view('suppliers.edit', ['supplier' => $supplier]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'contact_phone' => 'required',
+            'name' =>'required',
+            'is_active' => 'required',
         ]);
-    
-        $supplier = Supplier::findOrFail($id);
+
+        $supplier = Supplier::where('id', $id)->first();
         $supplier->update($request->all());
-    
-        return redirect()->route('suppliers.index')
-                         ->with('success', 'Supplier updated successfully.');
+        return redirect()->route('suppliers.index')->with('success','Tu Supplier se ha actualizado exitosamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        $supplier = Supplier::findOrFail($id);
+        $supplier = Supplier::where('id', $id)->first();
         $supplier->delete();
-
-        return redirect()->route('suppliers.index')
-                     ->with('success', 'Supplier deleted successfully.');
+        return redirect()->route('suppliers.index')->with('success','Tu Supplier se ha eliminado exitosamente!');
     }
 }

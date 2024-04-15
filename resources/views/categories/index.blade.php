@@ -1,53 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Categories</title>
-    <!-- Agrega aquí tus enlaces a los estilos CSS si los tienes -->
-    <style>
-        /* Estilos CSS para la tabla, puedes personalizarlos según tus necesidades */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>List of Categories</h2>
-        <a href="{{ route('categories.create') }}" style="margin-bottom: 10px; display: block;">Add Categories</a>
-        <table>
+@extends('layouts.base')
+
+@section('content')
+    <div class="place">
+        <h1>Categories</h1>
+        <a href="{{route('categories.create')}}" class="linkButton"><button class="button">NEW CATEGORY</button></a>
+    </div>
+    <div class="place">
+        <div class="searchBox">
+            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+        </div>
+
+        <select name="categorias">
+            <option value="">-- Buscar por: --</option>
+            <option value="1">Nombre</option>
+            <option value="2">Fecha</option>
+            <option value="3">Cantidad</option>
+        </select>
+    </div>
+
+    <div>
+        <table class="table table-bordered text-black">
             <thead>
-                <tr>
+                <tr class="text-secondary">
+                    <th>Id</th>
                     <th>Name</th>
+                    <th>Status</th>
+                    <th>Created_at</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($categories as $category)
-                <tr>
-                    <td>{{ $category->name }}</td>
-                    <td>
-                        <a href="{{ route('categories.edit', $category->id) }}"><button type="button">Edit</button></a>
-                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+                @forelse ($categories as $category)
+
+                    <tr>
+                        <th>{{$category->id}}</th>
+                        <th class="fw-bold" >{{$category->name}}</th>
+                        <th>
+                            @if ($category->is_active)
+                                <span class="badge bg-success fs-6">Activo</span>
+                            @else
+                                <span class="badge bg-secondary fs-6">Inactivo</span>
+                            @endif
+                        </th>
+                        <th>{{$category->created_at}}</th>
+                        <th>
+                            <a href="{{route('categories.edit', $category)}}" class="btn btn-warning">Editar</a>
+
+                            <form action="{{route('categories.destroy', $category)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </th>
+                    </tr>
+
+                @empty
+                    <tr>
+                        <th>None</th>
+                    </tr>
+                @endforelse
+
             </tbody>
         </table>
+        {{$categories->links()}}
     </div>
-</body>
-</html>
+@endsection

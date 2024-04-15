@@ -31,7 +31,7 @@
 
 
   .header .headerSeccion button {
-    padding: 2em;
+    padding: 1em;
     font-weight: 700;
     background-color: #f57251;
     color: black;
@@ -75,6 +75,10 @@
 
 }
 
+.barside .barSections{
+    padding-left: 0em;
+}
+
 
 .barside .barSections li{
     display: flex;
@@ -85,7 +89,7 @@
 }
 
 .barside .barSections li a{
-    padding: 1em 3em;
+    padding: 0.5em 3em;
     text-decoration: none;
     color: grey;
     font-size: small;
@@ -109,6 +113,7 @@
 .barside .barSections li a:hover{
     background-color: #c4ad9d;
 }
+
 
 /*SECCION DEL INDEX */
 
@@ -164,3 +169,9 @@
     border-radius: 0.5em;
     cursor: pointer;
 }
+
+/*TABLA*/
+
+
+
+

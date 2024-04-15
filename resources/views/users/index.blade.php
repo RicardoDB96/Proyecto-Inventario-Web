@@ -1,31 +1,33 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div>
-            <h2 class="text-white">Usuarios</h2>
+    <div class="place">
+        <h1>Users</h1>
+        <a href="{{route('users.create')}}" class="linkButton"><button class="button">NEW USER</button></a>
+    </div>
+    <div class="place">
+        <div class="searchBox">
+            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
         </div>
-        <div>
-            <a href="{{route('users.create')}}" class="btn btn-primary">Crear nuevo usuario</a>
-        </div>
+
+        <select name="categorias">
+            <option value="">-- Buscar por: --</option>
+            <option value="1">Nombre</option>
+            <option value="2">Fecha</option>
+            <option value="3">Cantidad</option>
+        </select>
     </div>
 
-    @if (Session::get('success'))
-        <div class="alert alert-success mt-4">
-            <strong>{{Session::get('success')}}</strong>
-        </div>
-    @endif
-
-    <div class="col-12 mt-4">
-        <table class="table table-bordered text-white">
+    <div>
+        <table class="table table-bordered text-black">
             <thead>
                 <tr class="text-secondary">
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Correo electrónico</th>
-                    <th>Rol</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Password</th>
                     <th>Status</th>
                     <th>Created_at</th>
                     <th>Actions</th>
@@ -38,8 +40,9 @@
                         <th>{{$user->id}}</th>
                         <th class="fw-bold" >{{$user->name}}</th>
                         <th>{{$user->last_name}}</th>
-                        <th>{{$user->email}}</th>
                         <th>{{$user->role_id}}</th>
+                        <th>{{$user->email}}</th>
+                        <th>{{$user->password}}</th>
                         <th>
                             @if ($user->is_active)
                                 <span class="badge bg-success fs-6">Activo</span>
@@ -67,6 +70,6 @@
 
             </tbody>
         </table>
+        {{$users->links()}}
     </div>
-</div>
 @endsection

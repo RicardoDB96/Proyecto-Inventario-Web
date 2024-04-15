@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    protected $guarded = ['_token'];
     use HasFactory;
+    protected $fillable = ['name','address','contact_phone','is_active'];
 }

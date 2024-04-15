@@ -1,57 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Suppliers</title>
-    <!-- Agrega aquí tus enlaces a los estilos CSS si los tienes -->
-    <style>
-        /* Estilos CSS para la tabla, puedes personalizarlos según tus necesidades */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>List of Suppliers</h2>
-        <a href="{{ route('suppliers.create') }}" style="margin-bottom: 10px; display: block;">Add Supplier</a>
-        <table>
+@extends('layouts.base')
+
+@section('content')
+    <div class="place">
+        <h1>Suppliers</h1>
+        <a href="{{route('suppliers.create')}}" class="linkButton"><button class="button">NEW SUPPLIER</button></a>
+    </div>
+    <div class="place">
+        <div class="searchBox">
+            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+        </div>
+
+        <select name="categorias">
+            <option value="">-- Buscar por: --</option>
+            <option value="1">Nombre</option>
+            <option value="2">Fecha</option>
+            <option value="3">Cantidad</option>
+        </select>
+    </div>
+
+    <div>
+        <table class="table table-bordered text-black">
             <thead>
-                <tr>
+                <tr class="text-secondary">
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Address</th>
-                    <th>Contact Phone</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Created_at</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($suppliers as $supplier)
-                <tr>
-                    <td>{{ $supplier->name }}</td>
-                    <td>{{ $supplier->address }}</td>
-                    <td>{{ $supplier->contact_phone }}</td>
-                    <td>
-                        <a href="{{ route('suppliers.edit', $supplier->id) }}"><button type="button">Edit</button></a>
-                        <form action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this supplier?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+                @forelse ($suppliers as $supplier)
+
+                    <tr>
+                        <th>{{$supplier->id}}</th>
+                        <th class="fw-bold" >{{$supplier->name}}</th>
+                        <th>{{$supplier->address}}</th>
+                        <th>{{$supplier->contact_phone}}</th>
+                        <th>
+                            @if ($supplier->is_active)
+                                <span class="badge bg-success fs-6">Activo</span>
+                            @else
+                                <span class="badge bg-secondary fs-6">Inactivo</span>
+                            @endif
+                        </th>
+                        <th>{{$supplier->created_at}}</th>
+                        <th>
+                            <a href="{{route('suppliers.edit', $supplier)}}" class="btn btn-warning">Editar</a>
+
+                            <form action="{{route('suppliers.destroy', $supplier)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </th>
+                    </tr>
+
+                @empty
+                    <tr>
+                        <th>None</th>
+                    </tr>
+                @endforelse
+
             </tbody>
         </table>
+        {{$suppliers->links()}}
     </div>
-</body>
-</html>
+@endsection
