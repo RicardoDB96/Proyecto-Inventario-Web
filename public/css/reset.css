@@ -1,0 +1,103 @@
+html,
+body {
+  background-color: #f4f4f4;
+  height: 100%;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: larger;
+  text-align: start;
+}
+
+.p-center {
+  text-align: center;
+}
+
+label {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Estilo personalizado para los inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background-color: #E9E6DD;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 2.5% 1%;
+  margin-bottom: 5%;
+  font-size: large;
+}
+
+/* Estilo personalizado para cambiar la apariencia del input cuando está enfocado */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  background-color: #E9E6DD;
+  outline: none;
+  border-color: #000000;
+}
+
+.input-group-text {
+  background-color: #E9E6DD;
+  outline: none;
+  border-color: #000000;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.btn-custom {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  background-color: #F57251;
+  color: #fff;
+  border: none;
+  padding: 1.5%;
+  border-radius: 5px;
+  margin-top: 2%;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-custom:hover,
+.btn-custom:active {
+  background-color: #f5542c;
+  color: #ffffff;
+}
+
+.card {
+  background-color: #f4f4f4;
+  border: 7.5px solid #f5542c;
+  border-radius: 1rem;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+}
+
+.symbol {
+  color: #f5542c;
+  font-size: 80px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.text-container {
+  display: inline-block;
+  margin-left: 10px;
+}

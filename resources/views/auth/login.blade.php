@@ -24,28 +24,43 @@
       <!-- Columna para el formulario -->
       <div class="col-md-6">
         <h1 class="text-center mb-4">Frostify</h1>
+        
+        <!-- Formulario de login --->
         <form action="" method="POST">
+          @csrf
           <div class="form-group">
             <label for="correo">Correo Electrónico:</label>
-            <input type="email" class="form-control" id="correo" autofocus name="correo" required>
+            <input type="email" class="form-control" id="email" value="{{ old('email') }}" autofocus name="email" required>
           </div>
 
-          <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <div class="input-group mb-3">
-              <input name="password" type="password" class="form-control" id="password" required>
-              <div class="input-group-append">
-                <span class="input-group-text" onclick="password_show_hide();">
-                  <i class="fas fa-eye" id="show_eye"></i>
-                  <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                </span>
-              </div>
+          
+          <label for="password">Contraseña:</label>
+          <div class="input-group mb-3">
+            <input name="password" type="password" class="form-control" id="password" required>
+            <div class="input-group-append">
+              <span class="input-group-text" onclick="password_show_hide();">
+                <i class="fas fa-eye" id="show_eye"></i>
+                <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+              </span>
             </div>
           </div>
 
-          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+          <a href="{{ route('reset') }}" class="forgot-password">¿Olvidaste tu contraseña?</a>
+          
+          <!--<label class="remember">
+            <input type="checkbox" name="remember">
+            Recuerdame
+          </label>-->
 
-          <button type="submit" class="btn btn-custom btn-block">Iniciar Sesión</button>
+          @if($errors->any())
+            <ul>
+              @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          @endif
+
+          <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
         </form>
       </div>
     </div>
