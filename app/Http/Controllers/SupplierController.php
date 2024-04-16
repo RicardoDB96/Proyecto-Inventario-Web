@@ -16,7 +16,7 @@ class SupplierController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $suppliers = Supplier::latest()->paginate(6);
+        $suppliers = Supplier::latest()->paginate(5);
 
         return view('suppliers.index',['suppliers'=>$suppliers]);
     }

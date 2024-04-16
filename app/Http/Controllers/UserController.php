@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $users = User::latest()->paginate(6);
+        $users = User::latest()->paginate(5);
 
         return view('users.index',['users'=>$users]);
     }

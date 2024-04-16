@@ -30,7 +30,7 @@
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address:</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" style="height:150px; name="address" placeholder="Address..."></textarea>
+                                <textarea class="form-control" style="height:150px;" name="address" placeholder="Address..."></textarea>
                             </div>
                         </div>
 
@@ -64,4 +64,3 @@
     </div>
 </div>
 @endsection
-

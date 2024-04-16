@@ -1,44 +1,53 @@
 @extends('layouts.base')
 
 @section('content')
-
 <div class="place">
     <h1>Crear Inventory</h1>
-
 </div>
+
 <div class="place">
-    <a href="{{route('inventories.index')}}" class="linkButton"><button class="button">VOLVER</button></a>
+    <a href="{{ route('inventories.index') }}" class="linkButton"><button class="button">VOLVER</button></a>
 </div>
 
-<div >
-
-    <form action="{{route('inventories.store')}}" method="POST">
-        @csrf
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-start">
+                    <h4 class="mb-0">ADD NEW INVENTORY</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('inventories.store') }}" method="POST">
+                        @csrf
         <div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-                <div class="form-group">
-                    <strong>Product Name:</strong>
-                    <input type="text" name="product_id" class="form-control" placeholder="Inventory Name"  >
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Product ID:</label>
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Product ID">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="amount" class="col-md-4 col-form-label text-md-right">Amount:</label>
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Amount...">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="is_active" class="col-md-4 col-form-label text-md-right">Status:</label>
+                            <div class="col-md-6">
+                                <select name="is_active" class="form-select" id="">
+                            <option value="">-- Elige el status --</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-                <div class="form-group">
-                    <strong>Amount:</strong>
-                    <textarea class="form-control" style="height:150px" name="amount" placeholder="Amount"></textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
-                <div class="form-group">
-                    <strong>Status:</strong>
-                    <select name="is_active" class="form-select" id="">
-                        <option value="">-- Elige el status --</option>
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
+
+                <div class="form-group row mb-0">
+                    <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">Crear</button>
             </div>
         </div>
