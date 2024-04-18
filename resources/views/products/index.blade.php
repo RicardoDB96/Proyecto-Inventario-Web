@@ -18,10 +18,10 @@
         </select>
     </div>
 
-    <div>
-        <table class="table table-bordered text-black">
-            <thead>
-                <tr class="text-secondary">
+    <div class="tableInfo">
+        <table class="table table-bordered text-black table-striped table-hover">
+            <thead class="thead">
+                <tr class="text-black">
                     <th>Id</th>
                     <th>Product Name</th>
                     <th>Description</th>

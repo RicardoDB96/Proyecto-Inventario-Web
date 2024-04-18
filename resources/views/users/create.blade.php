@@ -1,20 +1,16 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="place">
-    <h1>Crear User</h1>
-
-</div>
-<div class="place">
-    <a href="{{ route('users.index') }}" class="linkButton"><button class="button">VOLVER</button></a>
-</div>
 
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header d-flex justify-content-start">
+                <div class="card-header d-flex justify-content-between">
                     <h4 class="mb-0">ADD NEW USER</h4>
+                    <div class="col-md-0 offset-md-0">
+                        <a href="{{ route('users.index') }}"><button class="btn btn-secondary">Back</button></a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('users.store') }}" method="POST">

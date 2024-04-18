@@ -1,20 +1,16 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="place">
-    <h1>Crear Producto</h1>
-</div>
-
-<div class="place">
-    <a href="{{ route('products.index') }}" class="linkButton"><button class="button">VOLVER</button></a>
-</div>
 
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header d-flex justify-content-start">
+                <div class="card-header d-flex justify-content-between">
                     <h4 class="mb-0">ADD NEW PRODUCT</h4>
+                    <div class="col-md-0 offset-md-0">
+                        <a href="{{ route('products.index') }}"><button class="btn btn-secondary">Back</button></a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('products.store') }}" method="POST">
@@ -73,7 +69,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">Crear</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                         </div>
                     </form>

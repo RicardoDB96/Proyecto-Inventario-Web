@@ -118,8 +118,10 @@ body {
 /*SECCION DEL INDEX */
 
 .index {
-  display: grid;
-  grid-template-rows: 1fr 1fr 10fr;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding:  2em;
 }
 
 /*TOP & MID PALACE*/
@@ -128,7 +130,7 @@ body {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  padding: 0em 2em;
+
 }
 
 /*TOP*/
@@ -189,4 +191,14 @@ select.form-select {
 input.form-control:focus,
 textarea.form-control:focus {
   background-color: #D7D7D7;
+}
+
+
+/*TABLA INDEX*/
+.tableInfo .thead{
+    background-color: #C4AD9D;
+}
+
+.tableInfo .table-striped{
+    background-color:#E9E6DD ;
 }
