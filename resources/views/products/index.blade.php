@@ -38,7 +38,7 @@
 
                     <tr>
                         <th>{{$product->id}}</th>
-                        <th class="fw-bold" >{{$product->name}}</th>
+                        <th class="fw-bold" ><a href="{{route('products.show', $product)}}">{{$product->name}}</a></th>
                         <th>{{$product->description}}</th>
                         <th>{{$product->base_price}}</th>
                         <th>{{$product->base_cost}}</th>

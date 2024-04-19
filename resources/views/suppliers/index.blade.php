@@ -36,7 +36,7 @@
 
                     <tr>
                         <th>{{$supplier->id}}</th>
-                        <th class="fw-bold" >{{$supplier->name}}</th>
+                        <th class="fw-bold" ><a href="{{route('suppliers.show', $supplier)}}">{{$supplier->name}}</a></th>
                         <th>{{$supplier->address}}</th>
                         <th>{{$supplier->contact_phone}}</th>
                         <th>

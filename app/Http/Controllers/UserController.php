@@ -53,7 +53,7 @@ class UserController extends Controller
         $user = User::where('id', $id)->first();
 
         // Pasar los datos del producto a la vista
-        return $user->id.'  '.$user->name.'<br>';
+        return view('users.show', ['user' => $user]);
     }
 
     /**

@@ -34,7 +34,7 @@
 
                     <tr>
                         <th>{{$role->id}}</th>
-                        <th class="fw-bold" >{{$role->name}}</th>
+                        <th class="fw-bold" ><a href="{{route('roles.show', $role)}}">{{$role->name}}</a></th>
                         <th>
                             @if ($role->is_active)
                                 <span class="badge bg-success fs-6">Activo</span>

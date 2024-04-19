@@ -53,7 +53,7 @@ class RoleController extends Controller
         $role = Role::where('id', $id)->first();
 
         // Pasar los datos del producto a la vista
-        return $role->id.'  '.$role->name.'<br>';
+        return view('roles.show', ['role' => $role]);
     }
 
     /**

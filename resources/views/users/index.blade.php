@@ -37,7 +37,7 @@
 
                     <tr>
                         <th>{{$user->id}}</th>
-                        <th class="fw-bold" >{{$user->name}}</th>
+                        <th class="fw-bold" ><a href="{{route('users.show', $user)}}">{{$user->name}}</a></th>
                         <th>{{$user->last_name}}</th>
                         <th>{{$user->role_id}}</th>
                         <th>{{$user->email}}</th>

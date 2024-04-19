@@ -34,7 +34,7 @@
 
                     <tr>
                         <th>{{$category->id}}</th>
-                        <th class="fw-bold" >{{$category->name}}</th>
+                        <th class="fw-bold" ><a href="{{route('categories.show', $category)}}">{{$category->name}}</a></th>
                         <th>
                             @if ($category->is_active)
                                 <span class="badge bg-success fs-6">Activo</span>

@@ -53,7 +53,7 @@ class CategoryController extends Controller
         $category = Category::where('id', $id)->first();
 
         // Pasar los datos del producto a la vista
-        return $category->id.'  '.$category->name.'<br>';
+        return view('categories.show', ['category' => $category]);
     }
 
     /**

@@ -53,7 +53,7 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->first();
 
         // Pasar los datos del producto a la vista
-        return $product->id.'  '.$product->name.'<br>';
+        return view('products.show', ['product' => $product]);
     }
 
     /**

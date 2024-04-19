@@ -53,7 +53,7 @@ class SupplierController extends Controller
         $supplier = Supplier::where('id', $id)->first();
 
         // Pasar los datos del producto a la vista
-        return $supplier->id.'  '.$supplier->name.'<br>';
+        return view('suppliers.show', ['supplier' => $supplier]);
     }
 
     /**
