@@ -82,9 +82,9 @@ class UserController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $users = User::latest()->paginate(5);
+        $users = User::with('role')->paginate(5);
 
-        return view('users.index',['users'=>$users]);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -100,13 +100,25 @@ class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
+        // Validamos que los datos del ingresados sean validos
         $request->validate([
-            'name' =>'required',
-            'is_active' => 'required',
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'role_id' => 'required|integer',
+            'password' => 'required|confirmed'
         ]);
 
-        User::create($request->all());
+        // Registro el usuario en la base de datos
+        $user = new User();
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->role_id =$request->role_id;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
         return redirect()->route('users.index')->with('success','Nuevo User creado exitosamente!');
     }
 
