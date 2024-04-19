@@ -26,7 +26,7 @@ use App\Http\Controllers\CategoryController;
 Route::view('/', 'welcome')->middleware('auth:sanctum');
 
 // Rutas de login
-Route::view('login', 'auth.login')->name('login');
+Route::view('login', 'auth.login')->name('login')->middleware('guest');
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login'])->name('login');
 

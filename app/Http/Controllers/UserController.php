@@ -106,7 +106,7 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'role_id' => 'required|integer',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ]);
 
         // Registro el usuario en la base de datos
