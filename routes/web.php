@@ -11,7 +11,6 @@ use App\Http\Controllers\InventoryMovementController;
 use App\Http\Controllers\InventoryLogController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +23,12 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-Route::view('/', 'welcome')->middleware('auth');
+Route::view('/', 'welcome')->middleware('auth:sanctum');
 
 // Rutas de login
-Route::view('login', 'auth.login')->name('login')->middleware('guest');
-Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout']);
+Route::view('login', 'auth.login')->name('login');
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login'])->name('login');
 
 // Restablecer contraseña
 Route::view('reset', 'auth.reset')->name('reset');
@@ -37,7 +36,10 @@ Route::view('reset-password', 'auth.password')->name('password');
 Route::view('done-password', 'auth.done')->name('done');
 Route::view('updated-password', 'auth.updated')->name('updated');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('user-profile', [UserController::class, 'userProfile']);
+    Route::post('logout', [UserController::class, 'logout']);
+    
     Route::resource('products', ProductController::class);
     Route::resource('users', UserController::class);
     Route::resource('suppliers', SupplierController::class);
