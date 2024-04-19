@@ -7,9 +7,75 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
+
+    public function register(Request $request) {
+        // Validamos que los datos del ingresados sean validos
+        $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'role_id' => 'required|integer',
+            'password' => 'required|confirmed'
+        ]);
+
+        // Registro el usuario en la base de datos
+        $user = new User();
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->role_id =$request->role_id;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'Registered user'
+        ]);
+    }
+
+    public function login(Request $request) {
+        // Validamos el ingreso de los datos
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        // Intentamos iniciar sesion
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // Regenerar el token csrf
+            return redirect()->intended('/');
+        } 
+        
+        // Lanzar mensaje de error de datos invalidos
+        throw ValidationException::withMessages([
+            'email' => __('auth.failed')
+        ]);
+    }
+
+    public function userProfile() {
+        return response()->json([
+            'status' => 0,
+            'message' => 'User info',
+            'data' => auth()->user()
+        ]);
+    }
+
+    public function logout(Request $request) {
+        auth()->user()->tokens()->delete(); // Eliminamos el token
+        
+        $request->session()->invalidate(); // Invalidamos sesión
+        $request->session()->regenerate(); // Regenerar el token csrf
+
+        return redirect('/');
+    }
+
     /**
      * Display a listing of the resource.
      */
