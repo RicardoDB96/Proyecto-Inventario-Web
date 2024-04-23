@@ -82,7 +82,7 @@ class UserController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $users = User::with('role')->paginate(5);
+        $users = User::with('role')->paginate(4);
 
         return view('users.index', compact('users'));
     }

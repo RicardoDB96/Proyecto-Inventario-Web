@@ -16,7 +16,7 @@ class RoleController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $roles = Role::latest()->paginate(5);
+        $roles = Role::latest()->paginate(4);
 
         return view('roles.index',['roles'=>$roles]);
     }

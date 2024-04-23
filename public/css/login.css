@@ -1,71 +1,110 @@
+/* COLORES */
+
+:root[data-mode="light"]{
+
+  /* Main Page */
+  --page-bg: #f4f4f4;
+
+  /* All Text */
+  --primary-text: black;
+
+  /* Header-Place Button & Hover */
+  --button-primary: #f5542c;
+  --button-hover: #F57251;
+
+  /* Input Colors */
+  --input-bg: #E9E6DD;
+  --default-border: black ;
+}
+
+:root[data-mode="dark"]{
+
+  /* Main Page */
+  --page-bg: #0D1117;
+
+  /* Text */
+  --primary-text: white;
+  
+  /* Header-Place Button & Hover */
+  --button-primary: #f5542c;
+  --button-hover: #F57251;
+
+  /* Input Colors */
+  --input-bg: #E9E6DD;
+  --default-border: #c2bdbd;
+}
+
 body {
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-}
-
-label {
-  font-family: 'PT Sans', sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-}
-
-/* Estilo personalizado para los inputs */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  background-color: #E9E6DD;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  padding: 5% 1%;
-  margin-bottom: 7.5%;
-  font-size: large;
-}
-
-/* Estilo personalizado para cambiar la apariencia del input cuando está enfocado */
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  background-color: #E9E6DD;
-  outline: none;
-  border-color: #000000;
-}
-
-.input-group-text {
-  background-color: #E9E6DD;
-  outline: none;
-  border-color: #000000;
-}
-
-a {
-  color: #0274BD;
-}
-
-.btn-custom {
-  font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  background-color: #F57251;
-  color: #fff;
-  border: none;
-  padding: 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 10%;
-}
-
-.btn-custom:hover,
-.btn-custom:active {
-  background-color: #f5542c;
-  color: #ffffff;
-}
+    background-color: var(--page-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: var(--primary-text);
+  }
+  
+  label {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--primary-text);
+  }
+  
+  /* Estilo personalizado para los inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    background-color: var(--input-bg);
+    border: 1px solid;
+    border-color: var(--default-border);
+    border-radius: 4px;
+    padding: 5% 1%;
+    margin-bottom: 7.5%;
+    font-size: large;
+  }
+  
+  /* Estilo personalizado para cambiar la apariencia del input cuando está enfocado */
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    background-color: var(--input-bg);
+    outline: none;
+    border-color: var(--default-border);
+  }
+  
+  .input-group-text {
+    background-color: var(--input-bg);
+    outline: none;
+    border-color: var(--default-border);
+  }
+  
+  a {
+    color: #0274BD;
+  }
+  
+  .btn-custom {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    background-color: var(--button-primary);
+    color: var(--primary-text);
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10%;
+  }
+  
+  .btn-custom:hover,
+  .btn-custom:active {
+    background-color: var(--button-hover);
+    color: var(--primary-text);
+  }

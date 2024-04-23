@@ -1,18 +1,57 @@
+/* COLORES */
+
+:root[data-mode="light"]{
+
+  /* Main Page */
+  --page-bg: #f4f4f4;
+
+  /* All Text */
+  --primary-text: black;
+
+  /* Header-Place Button & Hover */
+  --button-primary: #f5542c;
+  --button-hover: #F57251;
+
+  /* Input Colors */
+  --input-bg: #E9E6DD;
+  --default-border: black ;
+}
+
+:root[data-mode="dark"]{
+
+  /* Main Page */
+  --page-bg: #0D1117;
+
+  /* Text */
+  --primary-text: white;
+  --muted-text: grey;
+  
+  /* Header-Place Button & Hover */
+  --button-primary: #f5542c;
+  --button-hover: #F57251;
+
+  /* Input Colors */
+  --input-bg: #E9E6DD;
+  --default-border: #c2bdbd;
+}
+
 html,
 body {
-  background-color: #f4f4f4;
+  background-color: var(--page-bg);
   height: 100%;
 }
 
 h2 {
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
+  color: var(--primary-text);
 }
 
 p {
   font-family: 'Open Sans', sans-serif;
   font-size: larger;
   text-align: start;
+  color: var(--primary-text);
 }
 
 .p-center {
@@ -25,13 +64,14 @@ label {
   font-size: 24px;
   text-align: left;
   width: 100%;
+  color: var(--primary-text);
 }
 
 /* Estilo personalizado para los inputs */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  background-color: #E9E6DD;
+  background-color: var(--input-bg);
   border: 1px solid #000000;
   border-radius: 4px;
   padding: 2.5% 1%;
@@ -43,15 +83,15 @@ input[type="password"] {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-  background-color: #E9E6DD;
+  background-color: var(--input-bg);
   outline: none;
-  border-color: #000000;
+  border-color: var(--default-border);
 }
 
 .input-group-text {
-  background-color: #E9E6DD;
+  background-color: var(--input-bg);
   outline: none;
-  border-color: #000000;
+  border-color: var(--default-border);
 }
 
 .container-fluid {
@@ -65,7 +105,7 @@ input[type="password"]:focus {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  background-color: #F57251;
+  background-color: var(--button-primary);
   color: #fff;
   border: none;
   padding: 1.5%;
@@ -77,13 +117,13 @@ input[type="password"]:focus {
 
 .btn-custom:hover,
 .btn-custom:active {
-  background-color: #f5542c;
+  background-color: var(--button-hover);
   color: #ffffff;
 }
 
 .card {
-  background-color: #f4f4f4;
-  border: 7.5px solid #f5542c;
+  background-color: var(--page-bg);
+  border: 7.5px solid;
   border-radius: 1rem;
   margin: 20px auto;
   display: flex;
@@ -91,7 +131,7 @@ input[type="password"]:focus {
 }
 
 .symbol {
-  color: #f5542c;
+  color: var(--button-primary);
   font-size: 80px;
   display: inline-block;
   vertical-align: middle;

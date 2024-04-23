@@ -20,7 +20,7 @@
 </div>
 
 <div class="tableInfo">
-    <table class="table table-bordered text-black table-striped table-hover">
+    <table class="table table-bordered text">
         <thead class="thead">
             <tr class="text-black">
                 <th>Id</th>

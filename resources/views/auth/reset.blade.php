@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
 @extends('layouts.reset')
 
 @section('title', 'Restablecer Contraseña')
@@ -18,3 +20,4 @@
   </div>
 </div>
 @endsection
+</html>
