@@ -1,43 +1,8 @@
-/* COLORES */
-
-:root[data-mode="light"]{
-
-  /* Main Page */
-  --page-bg: #f4f4f4;
-
-  /* All Text */
-  --primary-text: black;
-
-  /* Header-Place Button & Hover */
-  --button-primary: #f5542c;
-  --button-hover: #F57251;
-
-  /* Input Colors */
-  --input-bg: #E9E6DD;
-  --default-border: black ;
-}
-
-:root[data-mode="dark"]{
-
-  /* Main Page */
-  --page-bg: #0D1117;
-
-  /* Text */
-  --primary-text: white;
-  --muted-text: grey;
-  
-  /* Header-Place Button & Hover */
-  --button-primary: #f5542c;
-  --button-hover: #F57251;
-
-  /* Input Colors */
-  --input-bg: #E9E6DD;
-  --default-border: #c2bdbd;
-}
+@import url(color.css);
 
 html,
 body {
-  background-color: var(--page-bg);
+  background-color: var(--login-bg);
   height: 100%;
 }
 
@@ -71,7 +36,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  background-color: var(--input-bg);
+  background-color: var(--login-input-bg);
   border: 1px solid #000000;
   border-radius: 4px;
   padding: 2.5% 1%;
@@ -83,13 +48,13 @@ input[type="password"] {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-  background-color: var(--input-bg);
+  background-color: var(--login-input-bg);
   outline: none;
   border-color: var(--default-border);
 }
 
 .input-group-text {
-  background-color: var(--input-bg);
+  background-color: var(--login-input-bg);
   outline: none;
   border-color: var(--default-border);
 }
@@ -105,8 +70,8 @@ input[type="password"]:focus {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  background-color: var(--button-primary);
-  color: #fff;
+  background-color: var(--login-button-primary);
+  color: var(--primary-text);
   border: none;
   padding: 1.5%;
   border-radius: 5px;
@@ -117,12 +82,12 @@ input[type="password"]:focus {
 
 .btn-custom:hover,
 .btn-custom:active {
-  background-color: var(--button-hover);
-  color: #ffffff;
+  background-color: var(--login-button-hover);
+  color: var(--primary-text);
 }
 
 .card {
-  background-color: var(--page-bg);
+  background-color: var(--login-bg);
   border: 7.5px solid;
   border-radius: 1rem;
   margin: 20px auto;
@@ -131,7 +96,7 @@ input[type="password"]:focus {
 }
 
 .symbol {
-  color: var(--button-primary);
+  color: var(--login-button-primary);
   font-size: 80px;
   display: inline-block;
   vertical-align: middle;

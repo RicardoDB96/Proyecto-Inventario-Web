@@ -1,0 +1,100 @@
+/* COLORES */
+
+:root[data-mode="light"]{
+
+    /* Login Page */
+    --login-bg: #F4F4F4;
+    --login-input-bg: #E9E6DD;
+    --login-button-primary: #f5542c;
+    --login-button-hover: #F57251;
+
+    /* Main Page */
+    --page-header: #F57251;
+    --page-barside: #E9E6DD;
+    --page-bg: white;
+  
+    /* All Text */
+    --primary-text: black;
+    --muted-text: grey;
+  
+    /* Header-Place Button & Hover */
+    --button-primary: #F57251;
+    --button-hover: #C4AD9D;
+    --button-hoverPlace: #F57251AD;
+  
+    /* (Create | Edit | Show ) */
+    --card-header: #C4AD9D;
+    --card-bg: #E9E6DD;
+    --card-control: #D7D7D7;
+    --card-border: #343333;
+    
+    /* Index Table */
+    --tableInfo-header: #C4AD9D;
+    --tableInfo-color-odd: #E9E6DD;
+    --tableInfo-color-hoverOdd: #dddad1;
+    --tableInfo-color-even: #e9e6dd75;  
+    --tableInfo-color-hoverEven: #dddad1;
+    --tableInfo-border: #343333;
+  
+    /* Theme Switch */
+    --switch-bg : #F5F5F6;
+    --switch-circle-bg: #FFD371;
+    --switch-circle-pos: 0.36rem;
+    --icon-moon: #B1B0B5;
+    --icon-sun: #997F44;
+  
+    /* Barside & Header border */
+    --default-border: black ;
+  }
+  
+  :root[data-mode="dark"]{
+
+    /* Login Page */
+    --login-bg: #0D1117;
+    --login-input-bg: #E9E6DD;
+    --login-button-primary: #f5542c;
+    --login-button-hover: #F57251;
+  
+    /* Main Page */
+    --page-header: #1D2127;
+    --page-barside: #0D1117;
+    --page-bg: #010409;
+  
+    /* All Text */
+    --primary-text: white;
+    --muted-text: #AAAAAA;
+    
+    /* Header-Place Button & Hover */
+    --button-primary: #2A2A2F;
+    --button-hover: #2B2B30;
+    --button-hoverPlace: #414146;
+  
+    /* (Create | Edit | Show ) */
+    --card-header: #22272e;
+    --card-bg: #15181c;
+    --card-control: #D7D7D7;
+    --card-border: #c2bdbd;
+  
+    /* Index Table */
+    --tableInfo-header: #343a42;
+    --tableInfo-color-odd: #222528;
+    --tableInfo-color-hoverOdd: #2b2f32;
+    --tableInfo-color-even: #222528bc; 
+    --tableInfo-color-hoverEven: #2b2f32;  
+    --tableInfo-border: #c2bdbd;
+  
+    /* Theme Switch */
+    --switch-bg : var(--page-barside);
+    --switch-circle-bg: #7190FF;
+    --switch-circle-pos: 3.40rem;
+    --icon-moon: #DCE3FF;
+    --icon-sun: #77757E;
+
+    /* Barside & Header border */
+    --default-border: #30363D;
+  }
+  
+  :root {
+    /* Color Transition */
+    --default-transition: .3s all;
+  }

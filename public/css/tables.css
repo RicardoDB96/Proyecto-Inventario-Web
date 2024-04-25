@@ -1,0 +1,55 @@
+/* TABLAS (Create | Edit | Show ) */
+
+div.card-header {
+    background-color: var(--card-header);
+    border-color: var(--card-border);
+  }
+  
+  div.card {
+    color: var(--primary-text);
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+  }
+  
+  input.form-control,
+  textarea.form-control,
+  select.form-select {
+    background-color: var(--card-control);
+  }
+  
+  input.form-control:focus,
+  textarea.form-control:focus {
+    background-color: var(--card-control);
+  }
+  
+  
+  /* TABLA INDEX */
+  
+  .tableInfo .thead{
+    background-color: var(--tableInfo-header);;
+    border-color: var(--tableInfo-border);
+  }
+  
+  .tableInfo .text {
+    color: var(--primary-text);
+  }
+  
+  .tableInfo tbody tr:nth-of-type(odd) {
+    background-color: var(--tableInfo-color-odd);
+    border-color: var(--tableInfo-border);
+  }
+  
+  .tableInfo tbody tr:nth-of-type(odd):hover {
+    background-color: var(--tableInfo-color-hoverOdd);
+    border-color: var(--tableInfo-border);
+  }
+  
+  .tableInfo tbody tr:nth-of-type(even) {
+    background-color: var(--tableInfo-color-even);
+    border-color: var(--tableInfo-border);
+  }
+  
+  .tableInfo tbody tr:nth-of-type(even):hover {
+    background-color: var(--tableInfo-color-hoverEven);
+    border-color: var(--tableInfo-border);
+  }

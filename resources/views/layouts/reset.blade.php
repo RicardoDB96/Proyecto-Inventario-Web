@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer Contraseña</title>
+
+    <script>
+        //Revisa el 'localStorage'
+        let localS =localStorage.getItem('mode')
+
+        if (localS == 'dark'){
+            document.documentElement.setAttribute('data-mode', 'dark')
+        } 
+    </script>    
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
      <!-- font awesome  -->
