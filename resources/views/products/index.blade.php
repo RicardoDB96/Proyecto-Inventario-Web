@@ -36,10 +36,10 @@
             <tbody>
                 @forelse ($products as $product)
 
-                    <tr>
+                    <tr class="data">
                         <th>{{$product->id}}</th>
                         <th class="fw-bold" ><a href="{{route('products.show', $product)}}">{{$product->name}}</a></th>
-                        <th>{{$product->description}}</th>
+                        <th class="setWidth concat"><div class="desc">{{$product->description}}</div></th>
                         <th>{{$product->base_price}}</th>
                         <th>{{$product->base_cost}}</th>
                         <th>{{$product->category_id}}</th>
@@ -52,13 +52,15 @@
                         </th>
                         <th>{{$product->created_at}}</th>
                         <th>
-                            <a href="{{route('products.edit', $product)}}" class="btn btn-warning">Editar</a>
+                            <div class="d-flex column flex-wrap gap-2">
+                                <a href="{{route('products.edit', $product)}}" class="btn btn-warning">Editar</a>
 
-                            <form action="{{route('products.destroy', $product)}}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
+                                <form action="{{route('products.destroy', $product)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
                         </th>
                     </tr>
 

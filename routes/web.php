@@ -11,6 +11,7 @@ use App\Http\Controllers\InventoryMovementController;
 use App\Http\Controllers\InventoryLogController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BitacoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::view('updated-password', 'auth.updated')->name('updated');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user-profile', [UserController::class, 'userProfile']);
     Route::post('logout', [UserController::class, 'logout']);
-    
+
     Route::resource('products', ProductController::class);
     Route::resource('users', UserController::class);
     Route::resource('suppliers', SupplierController::class);
@@ -50,4 +51,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('inventory_logs', InventoryLogController::class);
     Route::resource('inventories', InventoryController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('bitacories', BitacoryController::class);
 });
