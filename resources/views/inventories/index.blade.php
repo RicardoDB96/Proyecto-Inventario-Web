@@ -19,7 +19,7 @@
     </select>
 </div>
 
-<div class="tableInfo">
+<div class="tableInfo table-responsive">
     <table class="table table-bordered text">
         <thead class="thead">
             <tr class="text-black">

@@ -54,7 +54,7 @@ div.card-header {
     border-color: var(--tableInfo-border);
   }
 
-/*TABLAS LARGAS*/
+/*TABLAS */
 
   .tableInfo .data th{
     font-weight: 300;
