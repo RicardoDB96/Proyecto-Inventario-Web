@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD laravel 10</title>
+    <title>Frostify</title>
 
     <script type="text/javascript" src="{{asset('js/localStorageSwitch.js') }}"></script>
 
@@ -58,6 +58,8 @@
         <nav class="barside" id="barside">
             <ul class="barSections">
                 <li><a href=""><h3 class="titleSeccion">DASHBOARD</h3></a></li>
+                <li><a href="{{route('logs.selling')}}"><h3 class="titleSeccion">Registrar venta</h3></a></li>
+                <li><a href="{{route('logs.buying')}}"><h3 class="titleSeccion">Registrar compra</h3></a></li>
                 <li>
                     <h3 class="titleSeccion wth">USERS & ROLES</h3>
                     <a href="{{route('users.index')}}">Manage Users</a>
