@@ -51,5 +51,5 @@ class SellingController extends Controller
 
         // Redirigir al usuario a una página de confirmación
         return redirect()->route('sellings.create')->with('success', 'La venta ha sido registrada correctamente.');
-    } 
+    }
 }
