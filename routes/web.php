@@ -12,6 +12,8 @@ use App\Http\Controllers\InventoryLogController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BitacoryController;
+use App\Http\Controllers\BuyingController;
+use App\Http\Controllers\SellingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('inventory_movements', InventoryMovementController::class);
     Route::resource('inventory_logs', InventoryLogController::class);
     Route::resource('inventories', InventoryController::class);
+    Route::resource('sellings', SellingController::class);
+    Route::resource('buyings', BuyingController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('bitacories', BitacoryController::class);
 });

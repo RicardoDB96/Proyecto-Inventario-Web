@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buying_row', function (Blueprint $table) {
+        Schema::create('buying_rows', function (Blueprint $table) {
             $table->increments('id')->comment('Id de fila de la comnpra');
             $table->integer('buying_id')->nullable()->unsigned()->comment('Compra');
             $table->foreign('buying_id')->references('id')->on('buyings');
-            $table->integer('products_id')->nullable()->unsigned()->comment('Producto');
-            $table->foreign('products_id')->references('id')->on('products');
+            $table->integer('product_id')->nullable()->unsigned()->comment('Producto');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->float('price',12,4)->nullable()->comment('Precio de la compra');
             $table->float('iva',10,4)->nullable()->comment('Iva de la compra');
             $table->integer('amount')->comment('Unidades vendidas');
