@@ -51,6 +51,7 @@
         <div class="product">
             <label for="product_${contadorProductos}">Producto:</label>
             <select name="products[${contadorProductos}][id]" required>
+                <option value="">Seleccione un producto</option>
                 @foreach($products as $product)
                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                 @endforeach
