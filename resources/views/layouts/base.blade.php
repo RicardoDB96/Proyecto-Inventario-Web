@@ -19,10 +19,10 @@
             <button id="showHide" class="sidebarButton"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
               </svg></button>
-            <h1 class="titlePage">INVENTORY SYSTEM</h1>
+            <h1 class="titlePage" id="titlePageHead">INVENTORY SYSTEM</h1>
         </div>
 
-        <h1 class="time">{{ now()->toDateString() }} {{ now()->toTimeString() }}</h1>
+        <h1 class="time" id="timeHead">{{ now()->toDateString() }} {{ now()->toTimeString() }}</h1>
 
         <nav class="headerSeccion">
             <div class ="headerGroup">
@@ -45,7 +45,7 @@
                     </svg>
                 </div>
 
-            <a href="/pages/carrito.html"><button>USUARIO123</button></a>
+                <a href="/pages/carrito.html"><button id="buttonHead">USUARIO123</button></a>
 
             </div>
 
@@ -54,12 +54,22 @@
 
     <div class="wrapper">
 
-
         <nav class="barside" id="barside">
+            <ul class="barSections" id="headerBar">
+                <li><h1 class="titlePageBarside">INVENTORY SYSTEM</h1>
+                    <h1 class="timeBarside">{{ now()->toDateString() }} {{ now()->toTimeString() }}</h1>
+                </li>
+
+                <li><a href=""><h3 class="titleSeccion">MI CUENTA</h3></a></li>
+
+            </ul>
             <ul class="barSections">
-                <li><a href=""><h3 class="titleSeccion">DASHBOARD</h3></a></li>
-                <li><a href="{{route('sellings.create')}}"><h3 class="titleSeccion">Registrar venta</h3></a></li>
-                <li><a href="{{route('buyings.create')}}"><h3 class="titleSeccion">Registrar compra</h3></a></li>
+
+                <li><a href=""><h3 class="titleSeccion">DASHBOARD</h3></a>
+                    <a href="{{route('sellings.create')}}">Registrar venta</a>
+                    <a href="{{route('buyings.create')}}">Registrar compra</a>
+                </li>
+
                 <li>
                     <h3 class="titleSeccion wth">USERS & ROLES</h3>
                     <a href="{{route('users.index')}}">Manage Users</a>
