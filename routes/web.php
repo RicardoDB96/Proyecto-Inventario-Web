@@ -13,6 +13,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BitacoryController;
 use App\Http\Controllers\BuyingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SellingController;
 
 /*
@@ -56,4 +57,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('buyings', BuyingController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('bitacories', BitacoryController::class);
+    Route::resource('dashboards', DashboardController::class);
 });

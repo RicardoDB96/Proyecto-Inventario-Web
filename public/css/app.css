@@ -1,6 +1,7 @@
 @import url(color.css);
 @import url(themeSwitcher.css);
 @import url(tables.css);
+@import url(dashboard.css);
 
 * {
   box-sizing: border-box;

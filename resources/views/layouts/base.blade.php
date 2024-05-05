@@ -45,7 +45,16 @@
                     </svg>
                 </div>
 
-                <a href="/pages/carrito.html"><button id="buttonHead">USUARIO123</button></a>
+                @if (Route::has('login'))
+
+                    @auth
+                        <form action="/logout" method="POST" style=" display:inline ">
+                            @csrf
+                            <a href="#" onclick="this.closest('form').submit()" class="buttonHead"><button id="buttonHead">Log out</button></a>
+                        </form>
+                    @endauth
+
+                @endif
 
             </div>
 
@@ -65,7 +74,7 @@
             </ul>
             <ul class="barSections">
 
-                <li><a href=""><h3 class="titleSeccion">DASHBOARD</h3></a>
+                <li><a href="{{route('dashboards.index')}}"><h3 class="titleSeccion">DASHBOARD</h3></a>
                     <a href="{{route('sellings.create')}}">Registrar venta</a>
                     <a href="{{route('buyings.create')}}">Registrar compra</a>
                 </li>
