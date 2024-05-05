@@ -51,8 +51,8 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Regenerar el token csrf
             return redirect()->intended('/');
-        } 
-        
+        }
+
         // Lanzar mensaje de error de datos invalidos
         throw ValidationException::withMessages([
             'email' => __('auth.failed')
@@ -69,7 +69,7 @@ class UserController extends Controller
 
     public function logout(Request $request) {
         auth()->user()->tokens()->delete(); // Eliminamos el token
-        
+
         $request->session()->invalidate(); // Invalidamos sesión
         $request->session()->regenerate(); // Regenerar el token csrf
 
@@ -119,7 +119,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index')->with('success','Nuevo User creado exitosamente!');
+        return redirect()->route('users.index')->with('success','New User have been successfully created!');
     }
 
     /**
@@ -155,7 +155,7 @@ class UserController extends Controller
 
         $user = User::where('id', $id)->first();
         $user->update($request->all());
-        return redirect()->route('users.index')->with('success','Tu User se ha actualizado exitosamente!');
+        return redirect()->route('users.index')->with('success','The User have been successfully updated!');
     }
 
     /**
@@ -165,6 +165,6 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->first();
         $user->delete();
-        return redirect()->route('users.index')->with('success','Tu User se ha eliminado exitosamente!');
+        return redirect()->route('users.index')->with('success','The User have been successfully deleted!');
     }
 }

@@ -185,6 +185,14 @@ body {
     transition: var(--default-transition);
   }
 
+  .barside .barSections form{
+    display: flex;
+    width: 100%;
+
+  }
+
+
+
 
 
 /* SECCION DEL INDEX */

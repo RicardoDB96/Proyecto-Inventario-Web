@@ -41,7 +41,7 @@ class RoleController extends Controller
         ]);
 
         Role::create($request->all());
-        return redirect()->route('roles.index')->with('success','Nuevo Rol creado exitosamente!');
+        return redirect()->route('roles.index')->with('success','New Supplier have been successfully created!');
     }
 
     /**
@@ -77,7 +77,7 @@ class RoleController extends Controller
 
         $role = Role::where('id', $id)->first();
         $role->update($request->all());
-        return redirect()->route('roles.index')->with('success','Tu Rol se ha actualizado exitosamente!');
+        return redirect()->route('roles.index')->with('success','The Role have been successfully updated!');
     }
 
     /**
@@ -87,6 +87,6 @@ class RoleController extends Controller
     {
         $role = Role::where('id', $id)->first();
         $role->delete();
-        return redirect()->route('roles.index')->with('success','Tu Rol se ha eliminado exitosamente!');
+        return redirect()->route('roles.index')->with('success','The Role have been successfully deleted!');
     }
 }

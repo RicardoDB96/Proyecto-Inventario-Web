@@ -29,6 +29,12 @@
         </select>
     </div>
 
+    @if (Session::get('success'))
+        <div class="alert alert-success">
+            <strong>{{Session::get('success')}}</strong>
+        </div>
+    @endif
+
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">

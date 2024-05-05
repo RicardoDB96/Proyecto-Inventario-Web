@@ -50,7 +50,7 @@
                     @auth
                         <form action="/logout" method="POST" style=" display:inline ">
                             @csrf
-                            <a href="#" onclick="this.closest('form').submit()" class="buttonHead"><button id="buttonHead">Log out</button></a>
+                            <a href="#" onclick="this.closest('form').submit()"><button id="buttonHead">Log out</button></a>
                         </form>
                     @endauth
 
@@ -69,7 +69,20 @@
                     <h1 class="timeBarside">{{ now()->toDateString() }} {{ now()->toTimeString() }}</h1>
                 </li>
 
-                <li><a href=""><h3 class="titleSeccion">MI CUENTA</h3></a></li>
+                <li>
+
+                    @if (Route::has('login'))
+
+                        @auth
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <a href="#" onclick="this.closest('form').submit()"><h3 class="titleSeccion">Log out</h3></a>
+                            </form>
+                        @endauth
+
+                    @endif
+
+                </li>
 
             </ul>
             <ul class="barSections">
