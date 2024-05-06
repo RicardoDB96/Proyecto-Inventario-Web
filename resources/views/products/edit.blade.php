@@ -16,6 +16,18 @@
                     <form action="{{route('products.update',$product)}}" method="POST">
                         @csrf
                         @method('PUT')
+
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Fill the requiered fields!</strong> try again...<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name:</label>
                             <div class="col-md-6">

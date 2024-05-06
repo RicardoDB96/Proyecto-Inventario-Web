@@ -40,7 +40,7 @@ class InventoryController extends Controller
         ]);
 
         Inventory::create($request->all());
-        return redirect()->route('inventories.index')->with('success','Nuevo Inventario creado exitosamente!');
+        return redirect()->route('inventories.index')->with('success','New Inventory have been successfully created!');
     }
 
     /**
@@ -76,7 +76,7 @@ class InventoryController extends Controller
 
         $inventory = Inventory::where('id', $id)->first();
         $inventory->update($request->all());
-        return redirect()->route('inventories.index')->with('success','Tu Inventario se ha actualizado exitosamente!');
+        return redirect()->route('inventories.index')->with('success','The Inventory have been successfully updated!');
     }
 
     /**
@@ -86,6 +86,6 @@ class InventoryController extends Controller
     {
         $inventory = Inventory::where('id', $id)->first();
         $inventory->delete();
-        return redirect()->route('inventories.index')->with('success','Tu Inventario se ha eliminado exitosamente!');
+        return redirect()->route('inventories.index')->with('success','The Inventory have been successfully deleted!');
     }
 }

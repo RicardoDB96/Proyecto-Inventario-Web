@@ -9,13 +9,19 @@
             <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
         </div>
 
-        <select name="categorias">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
-    </div>
+    <select name="categorias" id="categoriasPlace">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
+
+@if (Session::get('success'))
+        <div class="alert alert-success">
+            <strong>{{Session::get('success')}}</strong>
+        </div>
+@endif
 
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
