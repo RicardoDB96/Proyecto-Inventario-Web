@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $categories = Category::latest()->paginate(4);
+        $categories = Category::where('deleted', false)->paginate(4);
 
         return view('categories.index',['categories'=>$categories]);
     }
@@ -107,9 +107,12 @@ class CategoryController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        $category = Category::where('id', $id)->first();
-        $category->delete();
 
+        $category = Category::where('id', $id)->first();
+        $category->deleted = 1;
+        $category->save();
+
+        
         // Registrar la acción de eliminación en el log
         CategoryLogs::createLog($id, auth()->user()->id, 'deleted', 'Product deleted');
 
