@@ -7,6 +7,8 @@ use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\CategoryLogs;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -40,7 +42,11 @@ class CategoryController extends Controller
             'is_active' => 'required',
         ]);
 
-        Category::create($request->all());
+        $category = Category::create($request->all());
+
+        // Registrar la acción de creación en el log
+        CategoryLogs::createLog($category->id, auth()->user()->id, 'created', 'Product created');
+
         return redirect()->route('categories.index')->with('success','New Category have been successfully created!');
     }
 
@@ -76,7 +82,23 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::where('id', $id)->first();
+
+        $oldName = $category->name;
+
         $category->update($request->all());
+
+        $newName = $category->name;
+
+        if ($oldName !== $newName) {
+            $description = "Category name updated from '{$oldName}' to '{$newName}'";
+        } else {
+            $description = "Category updated";
+        }
+    
+
+        // Registrar la acción de actualización en el log
+        CategoryLogs::createLog($id, auth()->user()->id, 'updated', $description);
+
         return redirect()->route('categories.index')->with('success','The Category have been successfully updated!');
     }
 
@@ -87,6 +109,17 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->first();
         $category->delete();
+
+        // Registrar la acción de eliminación en el log
+        CategoryLogs::createLog($id, auth()->user()->id, 'deleted', 'Product deleted');
+
         return redirect()->route('categories.index')->with('success','The Category have been successfully deleted!');
     }
+
+    public function logs()
+    {
+        $logs = CategoryLogs::all();
+        return view('categories.logs', compact('logs'));
+    }
+
 }
