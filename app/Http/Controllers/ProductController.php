@@ -98,12 +98,17 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success','The Product have been successfully deleted!');
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        $search_text = $_GET['query'];
+        $search_text = $request->query('query');;
         $products = Product::where('name','LIKE', '%' . $search_text . '%')
         ->orWhere('category_id','LIKE','%'.$search_text.'%')
-        ->paginate(8);
+        ->orWhereHas('category', function ($query) use ($search_text) {
+            $query->where('name', 'LIKE', '%' . $search_text . '%');
+        })
+        ->paginate(3);
+
+        $products->appends(['query' => $search_text]);
 
         return view('products.search',compact('products'));
     }

@@ -68,7 +68,7 @@
                         <th class="setWidth concat"><div class="desc">{{$product->description}}</div></th>
                         <th>{{$product->base_price}}</th>
                         <th>{{$product->base_cost}}</th>
-                        <th>{{$product->category_id}}</th>
+                        <th>{{$product->category->name}}</th>
                         <th>
                             @if ($product->is_active)
                                 <span class="badge bg-success fs-6">Activo</span>
