@@ -40,14 +40,6 @@ class SellingController extends Controller
             'products.*.cantidad' => 'required|integer|min:1'
         ]);
 
-        // Crear la venta en la base de datos
-        $selling = Selling::create([
-            'client' => $request->client
-        ]);
-
-        $subtotal_selling = 0;
-        $iva = 0.16;
-
         foreach ($request->products as $product) {
             // Recuperamos el inventario
             $inventario = Inventory::findOrFail($product['id']);
@@ -58,6 +50,14 @@ class SellingController extends Controller
                 return redirect()->route('sellings.create')->with('error', 'No hay suficiente cantidad en el inventario para el producto ' . $inventario->product->name);
             }
         }
+
+        // Crear la venta en la base de datos
+        $selling = Selling::create([
+            'client' => $request->client
+        ]);
+
+        $subtotal_selling = 0;
+        $iva = 0.16;
 
         // Guardar los detalles de los productos
         foreach ($request->products as $product) {

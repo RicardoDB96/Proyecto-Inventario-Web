@@ -39,7 +39,7 @@
             <tr class="text-black">
                 <th>Id</th>
                 <th>Amount</th>
-                <th>Product Id</th>
+                <th>Product</th>
                 <th>Status</th>
                 <th>Created_at</th>
                 <th>Actions</th>
@@ -51,7 +51,7 @@
                 <tr>
                     <th>{{$inventory->id}}</th>
                     <th class="fw-bold" >{{$inventory->amount}}</th>
-                    <th>{{$inventory->product_id}}</th>
+                    <th>{{$inventory->product->name}}</th>
                     <th>
                         @if ($inventory->is_active)
                             <span class="badge bg-success fs-6">Activo</span>

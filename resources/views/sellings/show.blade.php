@@ -22,7 +22,7 @@
                 @forelse ($selling_rows as $selling_row)
 
                     <tr>
-                        <th>{{$selling_row->product_id}}</th>
+                        <th>{{$selling_row->product->name}}</th>
                         <th>{{$selling_row->price}}</th>
                         <th>{{$selling_row->iva}}</th>
                         <th>{{$selling_row->amount}}</th>

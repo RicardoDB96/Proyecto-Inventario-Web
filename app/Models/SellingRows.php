@@ -11,4 +11,12 @@ class SellingRows extends Model
     public $timestamps = false; // Desactivar las marcas de tiempo
 
     protected $fillable = ['selling_id','product_id','price','iva','amount','subtotal','total'];
+
+    /**
+     * Get the product associated with the inventory record.
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
 }

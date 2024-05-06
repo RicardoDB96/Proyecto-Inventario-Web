@@ -61,9 +61,9 @@
                             <div class="col-md-6">
                                 <select name="category_id" class="form-select" id="">
                                     <option value="">-- Elige la categoría --</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    @foreach(\App\Models\Category::all() as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
