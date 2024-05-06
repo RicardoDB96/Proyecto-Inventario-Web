@@ -21,7 +21,7 @@ return new class extends Migration
 			$table->timestamp('updated_at', 0)->useCurrent()->comment('Fecha de actialización');
 
             // Agrega una restricción de clave externa para la relación con la tabla de categorías
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories');
 
             // Agrega una restricción de clave externa para la relación con la tabla de usuarios
             $table->foreign('user_id')->references('id')->on('users');

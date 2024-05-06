@@ -16,6 +16,7 @@ return new class extends Migration
             //CATEGORIES INVENTORY SYSTEM
             $table->increments('id')->comment('Categoría');
             $table->string('name',255)->comment('Nombre de la categoría');
+            $table->boolean('deleted',255)->default(0)->comment('Categoría fue borrada');
 
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');
