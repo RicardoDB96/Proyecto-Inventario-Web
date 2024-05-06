@@ -21,15 +21,15 @@
                   <!-- Sección de productos -->
                   <div id="productos">
                       <div class="producto">
-                          <label for="producto_1">Producto:</label>
-                          <select name="products[1][id]" required>
-                                <option value="">Seleccione un producto</option>
-                              @foreach($products as $product)
-                                  <option value="{{ $product->id }}">{{ $product->name }}</option>
-                              @endforeach
-                          </select>
-                          <label for="cantidad_1">Cantidad:</label>
-                          <input type="number" name="products[1][cantidad]" required>
+                            <label for="producto_1">Producto:</label>
+                            <select name="products[1][id]" required>
+                                    <option value="">Seleccione un producto</option>
+                                @foreach($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                            <label for="cantidad_1">Cantidad:</label>
+                            <input type="number" name="products[1][cantidad]" required>
                       </div>
                   </div>
                   <button type="button" class="btn btn-primary" onclick="agregarProducto()">Agregar Producto</button>
@@ -58,9 +58,18 @@
             </select>
             <label for="cantidad_${contadorProductos}">Cantidad:</label>
             <input type="number" name="products[${contadorProductos}][cantidad]" required>
-            <!-- Otros campos de los products -->
+            ${contadorProductos > 1 ? '<button type="button" onclick="eliminarProducto(this)">Eliminar</button>' : ''}
         </div>`;
         document.getElementById('productos').insertAdjacentHTML('beforeend', nuevoProducto);
+    }
+
+    function eliminarProducto(botonEliminar) {
+        contadorProductos--;
+        // Obtener el div del producto que contiene el botón Eliminar
+        const divProducto = botonEliminar.parentNode;
+
+        // Eliminar el div del producto
+        divProducto.remove();
     }
 </script>
 @endsection

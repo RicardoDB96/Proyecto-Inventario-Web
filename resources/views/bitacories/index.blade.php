@@ -54,5 +54,6 @@
 
             </tbody>
         </table>
+        {{$inventory_logs->links()}}
     </div>
 @endsection

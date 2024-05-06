@@ -58,7 +58,7 @@
             </select>
             <label for="cantidad_${contadorProductos}">Cantidad:</label>
             <input type="number" name="products[${contadorProductos}][cantidad]" required>
-            <!-- Otros campos de los products -->
+            ${contadorProductos > 1 ? '<button type="button" onclick="eliminarProducto(this)">Eliminar</button>' : ''}
         </div>`;
         document.getElementById('productos').insertAdjacentHTML('beforeend', nuevoProducto);
     }
