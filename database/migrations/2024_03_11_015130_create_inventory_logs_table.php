@@ -15,12 +15,14 @@ return new class extends Migration
         Schema::create('inventory_logs', function (Blueprint $table) {
             //INVENTORY_LOGS INVENTORY SYSTEM
             $table->increments('id')->comment('Registro de inventario');
+            $table->integer('entity_id')->unsigned()->comment('Entidad a la que se hace referencia');
             $table->integer('inventory_id')->unsigned()->comment('Inventario');
             $table->foreign('inventory_id')->references('id')->on('inventories');
-            $table->integer('amount')->comment('Unidades totales');
-            $table->integer('delta_amount')->comment('Unidades compradas/vendidas');
-            $table->integer('movement_id')->unsigned()->comment('Movimiento hecho');
-            $table->foreign('movement_id')->references('id')->on('inventory_movements');
+            $table->integer('initial_inventory')->comment('Unidades totales');
+            $table->integer('delta_inventory')->comment('Unidades compradas/vendidas');
+            $table->integer('final_inventory')->comment('Unidades compradas/vendidas');
+            $table->integer('row_id')->unsigned()->comment('Columna del movimiento');
+			$table->timestamp('creation_date', 0)->useCurrent()->comment('Fecha de creación');
 
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('buyings', function (Blueprint $table) {
             $table->increments('id')->comment('Id de la compra');
             $table->string('client',255)->comment('Nombre del cliente');
-			$table->timestamp('creation_date', 0)->useCurrent()->comment('Fecha de creación');
+			$table->timestamp('created_at', 0)->useCurrent()->comment('Fecha de creación');
             $table->float('subtotal',12,4)->nullable()->comment('Subtotal de la compra');
             $table->float('iva',10,4)->nullable()->comment('Iva de la compra');
             $table->float('total',12,4)->nullable()->comment('Total de la compra');

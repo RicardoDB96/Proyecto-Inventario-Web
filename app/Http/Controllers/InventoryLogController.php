@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\InventoryLog;
 
 class InventoryLogController extends Controller
 {
@@ -11,7 +12,10 @@ class InventoryLogController extends Controller
      */
     public function index()
     {
-        return 'estoy en el product controller de inventario log';
+        // Obtener todos los productos
+        $inventory_logs = InventoryLog::latest()->paginate(5);
+
+        return view('bitacories.index', ['inventory_logs'=>$inventory_logs]);
     }
 
     /**

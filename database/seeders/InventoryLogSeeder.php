@@ -13,11 +13,5 @@ class InventoryLogSeeder extends Seeder
      */
     public function run(): void
     {
-        InventoryLog::create([
-            "amount"=> 100,
-            "delta_amount"=>100 ,
-            "movement_id"=>1,
-            "inventory_id"=>1,
-        ]);
     }
 }

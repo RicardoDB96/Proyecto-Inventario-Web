@@ -7,9 +7,22 @@ use Illuminate\View\View;
 use App\Models\Product;
 use App\Models\Selling;
 use App\Models\SellingRows;
+use App\Models\Inventory;
+use App\Models\InventoryLog;
 
 class SellingController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): View
+    {
+        // Obtener todos las ventass
+        $sellings = Selling::latest()->paginate(5);
+
+        return view('sellings.index',['sellings'=>$sellings]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -35,8 +48,22 @@ class SellingController extends Controller
         $subtotal_selling = 0;
         $iva = 0.16;
 
+        foreach ($request->products as $product) {
+            // Recuperamos el inventario
+            $inventario = Inventory::findOrFail($product['id']);
+
+            // Verificar si la cantidad en el inventario es suficiente
+            if ($inventario->amount < $product['cantidad']) {
+                // No hay suficiente cantidad en el inventario, regresar con un mensaje de error
+                return redirect()->route('sellings.create')->with('error', 'No hay suficiente cantidad en el inventario para el producto ' . $inventario->product->name);
+            }
+        }
+
         // Guardar los detalles de los productos
         foreach ($request->products as $product) {
+            // Recuperamos el inventario
+            $inventario = Inventory::findOrFail($product['id']);
+
             $product_model = Product::findOrFail($product['id']);
             $subtotal = $product['cantidad'] * $product_model->base_price;
             $subtotal_selling += $product['cantidad'] * $product_model->base_price;
@@ -46,9 +73,22 @@ class SellingController extends Controller
                 'amount' => $product['cantidad'],
                 'subtotal' => $subtotal,
                 'iva' => $iva,
-                'total' => ($subtotal * $iva) + $subtotal, // En este caso, total es igual a subtotal
+                'total' => ($subtotal * $iva) + $subtotal
             ]);
             $selling->rows()->save($row);
+
+            // Actualizar las ventas en el inventario
+            $inventario = Inventory::findOrFail($product['id']);
+            $inventario->reducir($product['cantidad']);
+
+            InventoryLog::create([
+                'entity_id' => 2,
+                'inventory_id' => $inventario->id,
+                'initial_inventory' => $inventario->amount + $product['cantidad'],
+                'delta_inventory' => $product['cantidad'],
+                'final_inventory' => $inventario->amount,
+                'row_id' => $row->id,
+            ]);
         }
 
         // Añadimps el subtotal total a la selling
@@ -58,6 +98,18 @@ class SellingController extends Controller
         $selling->save();
 
         // Redirigir al usuario a una página de confirmación
-        return redirect()->route('sellings.create')->with('success', 'La venta ha sido registrada correctamente.');
+        return redirect()->route('sellings.index')->with('success', 'La venta ha sido registrada correctamente.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        // Obtener los Selling_Rows por su ID
+        $selling_rows = SellingRows::where('selling_id', $id)->get();
+
+        // Pasar los datos del producto a la vista
+        return view('sellings.show', compact('selling_rows'));
     }
 }

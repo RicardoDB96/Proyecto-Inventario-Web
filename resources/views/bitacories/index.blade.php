@@ -1,25 +1,13 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="place">
-    <h1>Bitacories</h1>
-    <a href="" class="linkButton"><button class="button" id="buttonPlace">NEW BITACORY</button></a>
-</div>
-<div class="place" id="placeCel1">
-    <a href="" class="linkButton"><button class="button">NEW BITACORY</button></a>
-</div>
-<div class="place" id="placeCel2">
-    <select name="categorias">
-        <option value="">-- Buscar por: --</option>
-        <option value="1">Nombre</option>
-        <option value="2">Fecha</option>
-        <option value="3">Cantidad</option>
-    </select>
-</div>
-<div class="place">
-    <div class="searchBox">
-        <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+    <div class="place">
+        <h1>Bitacories</h1>
     </div>
+    <div class="place">
+        <div class="searchBox">
+            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+        </div>
 
     <select name="categorias" id="categoriasPlace">
         <option value="">-- Buscar por: --</option>
@@ -39,44 +27,39 @@
         <table class="table table-bordered text">
             <thead class="thead">
                 <tr class="text-black">
-                    <th>Id</th>
+                    <th>Movement type</th>
                     <th>Product Name</th>
-                    <th>Description</th>
-                    <th>Base Price</th>
-                    <th>Base Cost</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Created_at</th>
-                    <th>Actions</th>
+                    <th>Initial inventory</th>
+                    <th>Delta inventory</th>
+                    <th>Final inventory</th>
+                    <th>Created at</th>
                 </tr>
             </thead>
             <tbody>
-
-
+                @forelse ($inventory_logs as $inventory_log)
                     <tr class="data">
-                        <th></th>
-                        <th class="fw-bold" ><a href=""></a></th>
-                        <th class="setWidth concat"><div class="desc"></div></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         <th>
-                            <div class="d-flex column flex-wrap gap-2">
-                                <a href="" class="btn btn-warning">Editar</a>
-
-                                <form action="" class="d-inline">
-
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
+                            @if ($inventory_log->entity_id === 1)
+                                <span class="badge bg-success fs-6">Compra</span>
+                            @else
+                                <span class="badge bg-secondary fs-6">Venta</span>
+                            @endif
                         </th>
+                        <th><a href="{{route('products.show', $inventory_log->product->id)}}">{{$inventory_log->product->name}}</a></th>
+                        <th>{{$inventory_log->initial_inventory}}</th>
+                        <th>{{$inventory_log->delta_inventory}}</th>
+                        <th>{{$inventory_log->final_inventory}}</th>
+                        <th>{{$inventory_log->creation_date}}</th>
                     </tr>
 
+                @empty
+                    <tr>
+                        <th>None</th>
+                    </tr>
+                @endforelse
 
             </tbody>
         </table>
-
+        {{$inventory_logs->links()}}
     </div>
 @endsection

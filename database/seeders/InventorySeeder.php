@@ -14,18 +14,18 @@ class InventorySeeder extends Seeder
     public function run(): void
     {
         Inventory::create([
-            "amount"=> 100,
+            "amount"=> 0,
             "product_id"=>1,
         ]);
 
         Inventory::create([
-            "amount"=> 120,
-            "product_id"=>3,
+            "amount"=> 0,
+            "product_id"=>2,
         ]);
 
         Inventory::create([
-            "amount"=> 140,
-            "product_id"=>2,
+            "amount"=> 0,
+            "product_id"=>3,
         ]);
     }
 }
