@@ -3,7 +3,7 @@
 @section('content')
     <div class="place">
         <h1>Sellings</h1>
-        <a href="{{route('sellings.create')}}" class="linkButton"><button class="button">NEW SELLINGS</button></a>
+        <a href="{{route('sellings.create')}}" class="linkButton"><button class="button">NEW SELLING</button></a>
     </div>
     <div class="place">
         <div class="searchBox">

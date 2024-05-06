@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="mb-0">Add new buying</h4>
                     <div class="col-md-0 offset-md-0">
-                        <a href=""><button class="btn btn-secondary">Back</button></a>
+                        <a href="{{ route('buyings.index') }}"><button class="btn btn-secondary">Back</button></a>
                     </div>
                 </div>
                 <div class="card-body">

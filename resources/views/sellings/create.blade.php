@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="mb-0">Add new selling</h4>
                     <div class="col-md-0 offset-md-0">
-                        <a href=""><button class="btn btn-secondary">Back</button></a>
+                        <a href="{{ route('sellings.index') }}"><button class="btn btn-secondary">Back</button></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -61,6 +61,15 @@
             ${contadorProductos > 1 ? '<button type="button" onclick="eliminarProducto(this)">Eliminar</button>' : ''}
         </div>`;
         document.getElementById('productos').insertAdjacentHTML('beforeend', nuevoProducto);
+    }
+
+    function eliminarProducto(botonEliminar) {
+        contadorProductos--;
+        // Obtener el div del producto que contiene el botón Eliminar
+        const divProducto = botonEliminar.parentNode;
+
+        // Eliminar el div del producto
+        divProducto.remove();
     }
 </script>
 @endsection
