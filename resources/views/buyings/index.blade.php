@@ -35,8 +35,8 @@
                 @forelse ($buyings as $buying)
 
                     <tr>
-                        <th>{{$buying->id}}</th>
-                        <th>{{$buying->client}}</a></th>
+                        <th class="fw-bold" ><a href="{{route('buyings.show', $buying)}}">{{$buying->id}}</a></th>
+                        <th>{{$buying->client}}</th>
                         <th>{{$buying->created_at}}</th>
                         <th>{{$buying->subtotal}}</th>
                         <th>{{$buying->iva}}</th>

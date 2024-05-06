@@ -35,8 +35,8 @@
                 @forelse ($sellings as $selling)
 
                     <tr>
-                        <th>{{$selling->id}}</th>
-                        <th>{{$selling->client}}</a></th>
+                        <th class="fw-bold" ><a href="{{route('sellings.show', $selling)}}">{{$selling->id}}</a></th>
+                        <th>{{$selling->client}}</th>
                         <th>{{$selling->created_at}}</th>
                         <th>{{$selling->subtotal}}</th>
                         <th>{{$selling->iva}}</th>

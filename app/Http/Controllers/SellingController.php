@@ -100,4 +100,16 @@ class SellingController extends Controller
         // Redirigir al usuario a una página de confirmación
         return redirect()->route('sellings.index')->with('success', 'La venta ha sido registrada correctamente.');
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        // Obtener los Selling_Rows por su ID
+        $selling_rows = SellingRows::where('selling_id', $id)->get();
+
+        // Pasar los datos del producto a la vista
+        return view('sellings.show', compact('selling_rows'));
+    }
 }
