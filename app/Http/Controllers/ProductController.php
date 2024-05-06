@@ -41,7 +41,7 @@ class ProductController extends Controller
             'is_active' => 'required',
         ]);
 
-        Product::create($request->all());
+        $product = Product::create($request->all());
 
         // Se crea el inventario de manera inmediata cuando se crea el producto
         Inventory::create([
