@@ -58,8 +58,8 @@
         <nav class="barside" id="barside">
             <ul class="barSections">
                 <li><a href=""><h3 class="titleSeccion">DASHBOARD</h3></a></li>
-                <li><a href="{{route('sellings.create')}}"><h3 class="titleSeccion">Registrar venta</h3></a></li>
-                <li><a href="{{route('buyings.create')}}"><h3 class="titleSeccion">Registrar compra</h3></a></li>
+                <li><a href="{{route('buyings.index')}}"><h3 class="titleSeccion">BUYINGS</h3></a></li>
+                <li><a href="{{route('sellings.index')}}"><h3 class="titleSeccion">SELLINGS</h3></a></li>
                 <li>
                     <h3 class="titleSeccion wth">USERS & ROLES</h3>
                     <a href="{{route('users.index')}}">Manage Users</a>

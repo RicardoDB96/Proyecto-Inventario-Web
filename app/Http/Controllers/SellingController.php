@@ -13,6 +13,17 @@ use App\Models\InventoryLog;
 class SellingController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     */
+    public function index(): View
+    {
+        // Obtener todos las ventass
+        $sellings = Selling::latest()->paginate(5);
+
+        return view('sellings.index',['sellings'=>$sellings]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create(): View
@@ -87,6 +98,6 @@ class SellingController extends Controller
         $selling->save();
 
         // Redirigir al usuario a una página de confirmación
-        return redirect()->route('sellings.create')->with('success', 'La venta ha sido registrada correctamente.');
+        return redirect()->route('sellings.index')->with('success', 'La venta ha sido registrada correctamente.');
     }
 }
