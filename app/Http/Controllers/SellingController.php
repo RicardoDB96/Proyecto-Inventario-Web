@@ -30,17 +30,19 @@ class SellingController extends Controller
         // Crear la venta en la base de datos
         $selling = Selling::create([
             'client' => $request->client
-            // Calcula subtotal, iva y total según sea necesario
         ]);
+
+        $subtotal_selling = 0;
+        $iva = 0.16;
 
         // Guardar los detalles de los productos
         foreach ($request->products as $product) {
-            $productModel = Product::findOrFail($product['id']);
-            $subtotal = $product['cantidad'] * $productModel->base_price;
-            $iva = 0.16;
+            $product_model = Product::findOrFail($product['id']);
+            $subtotal = $product['cantidad'] * $product_model->base_price;
+            $subtotal_selling += $product['cantidad'] * $product_model->base_price;
             $row = new SellingRows([
                 'product_id' => $product['id'],
-                'price' => $productModel->base_price,
+                'price' => $product_model->base_price,
                 'amount' => $product['cantidad'],
                 'subtotal' => $subtotal,
                 'iva' => $iva,
@@ -48,6 +50,12 @@ class SellingController extends Controller
             ]);
             $selling->rows()->save($row);
         }
+
+        // Añadimps el subtotal total a la selling
+        $selling->subtotal = $subtotal_selling;
+        $selling->iva = $iva;
+        $selling->total = ($subtotal_selling * $iva) + $subtotal_selling;
+        $selling->save();
 
         // Redirigir al usuario a una página de confirmación
         return redirect()->route('sellings.create')->with('success', 'La venta ha sido registrada correctamente.');

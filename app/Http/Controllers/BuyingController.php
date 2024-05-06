@@ -30,17 +30,19 @@ class BuyingController extends Controller
         // Crear la venta en la base de datos
         $buying = Buying::create([
             'client' => $request->client
-            // Calcula subtotal, iva y total según sea necesario
         ]);
+
+        $subtotal_buying = 0;
+        $iva = 0.16;
 
         // Guardar los detalles de los productos
         foreach ($request->products as $product) {
-            $productModel = Product::findOrFail($product['id']);
-            $subtotal = $product['cantidad'] * $productModel->base_price;
-            $iva = 0.16;
+            $product_model = Product::findOrFail($product['id']);
+            $subtotal = $product['cantidad'] * $product_model->base_price;
+            $subtotal_buying += $product['cantidad'] * $product_model->base_price;
             $row = new BuyingRows([
                 'product_id' => $product['id'],
-                'price' => $productModel->base_price,
+                'price' => $product_model->base_price,
                 'amount' => $product['cantidad'],
                 'subtotal' => $subtotal,
                 'iva' => $iva,
@@ -48,6 +50,12 @@ class BuyingController extends Controller
             ]);
             $buying->rows()->save($row);
         }
+
+        // Añadimps el subtotal total a la selling
+        $buying->subtotal = $subtotal_buying;
+        $buying->iva = $iva;
+        $buying->total = ($subtotal_buying * $iva) + $subtotal_buying;
+        $buying->save();
 
         // Redirigir al usuario a una página de confirmación
         return redirect()->route('buyings.create')->with('success', 'La compra ha sido registrada correctamente.');

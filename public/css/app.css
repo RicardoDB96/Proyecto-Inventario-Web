@@ -1,6 +1,7 @@
 @import url(color.css);
 @import url(themeSwitcher.css);
 @import url(tables.css);
+@import url(dashboard.css);
 
 * {
   box-sizing: border-box;
@@ -16,6 +17,10 @@ body {
 }
 
 /* HEADER Y BOTONES */
+
+#headerBar{
+    display: none
+}
 
 .header {
   display: flex;
@@ -110,12 +115,14 @@ body {
 
 .barside {
   display: flex;
+  flex-direction: column;
   align-items: center;
   background-color: var(--page-barside);
   border-right: var(--borderWidth-thin, 1px) solid var(--default-border);
   border-bottom: var(--borderWidth-thin, 1px) solid var(--default-border);
   transition: var(--default-transition);
 }
+
 
 .barside .barSections{
     list-style: none;
@@ -151,9 +158,41 @@ body {
   padding: 0em 2em;
 }
 
+
 .barside .barSections li a:hover {
   background-color: var(--button-hover);
 }
+
+/*HEADER PARA CEL*/
+.barside #headerBar{
+    display: none;
+    background-color: var(--page-header);
+    box-shadow: inset 0 calc(var(--borderWidth-thin, 1px)*-1) var(--default-border);
+    transition: var(--default-transition);
+}
+
+.barside #headerBar .titlePageBarside{
+    font-size: medium;
+    font-weight: 700;
+    color: var(--primary-text);
+    transition: var(--default-transition);
+}
+
+.barside #headerBar .timeBarside {
+    font-size: small;
+    color: var(--primary-text);
+    text-align: center;
+    transition: var(--default-transition);
+  }
+
+  .barside .barSections form{
+    display: flex;
+    width: 100%;
+
+  }
+
+
+
 
 
 /* SECCION DEL INDEX */
@@ -220,6 +259,16 @@ body {
   cursor: pointer;
 }
 
+/*PLACE CEL*/
+
+#placeCel1{
+    display: none;
+}
+
+#placeCel2{
+    display: none;
+}
+
 @media only screen and (max-width:975px) {
 
     .wrapper {
@@ -243,6 +292,50 @@ body {
 
         width: 100%;
     }
+
+}
+
+@media only screen and (max-width:560px) {
+
+    .barside #headerBar{
+        display: flex;
+    }
+
+    #titlePageHead{
+        display: none;
+    }
+
+    #timeHead{
+        display: none;
+    }
+
+    #buttonHead{
+        display: none;
+    }
+
+
+
+
+
+}
+
+@media only screen and (max-width:420px) {
+
+#categoriasPlace{
+    display: none;
+}
+
+#buttonPlace{
+    display: none;
+}
+
+#placeCel1{
+    display: flex;
+}
+
+#placeCel2{
+    display: flex;
+}
 
 
 }

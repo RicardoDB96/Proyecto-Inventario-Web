@@ -1,22 +1,39 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="place">
-        <h1>Roles</h1>
-        <a href="{{route('roles.create')}}" class="linkButton"><button class="button">NEW ROLE</button></a>
+<div class="place">
+    <h1>Roles</h1>
+    <a href="{{route('roles.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW ROLE</button></a>
+</div>
+<div class="place" id="placeCel1">
+    <a href="{{route('roles.create')}}" class="linkButton"><button class="button">NEW ROLE</button></a>
+</div>
+<div class="place" id="placeCel2">
+    <select name="categorias">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
+<div class="place">
+    <div class="searchBox">
+        <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
     </div>
-    <div class="place">
-        <div class="searchBox">
-            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
-        </div>
 
-        <select name="categorias">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
-    </div>
+    <select name="categorias" id="categoriasPlace">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
+
+    @if (Session::get('success'))
+        <div class="alert alert-success">
+            <strong>{{Session::get('success')}}</strong>
+        </div>
+    @endif
 
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">

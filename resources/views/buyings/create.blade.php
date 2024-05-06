@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4 class="mb-0">Add new buyings</h4>
+                    <h4 class="mb-0">Add new buying</h4>
                     <div class="col-md-0 offset-md-0">
                         <a href=""><button class="btn btn-secondary">Back</button></a>
                     </div>
@@ -23,6 +23,7 @@
                       <div class="producto">
                           <label for="producto_1">Producto:</label>
                           <select name="products[1][id]" required>
+                                <option value="">Seleccione un producto</option>
                               @foreach($products as $product)
                                   <option value="{{ $product->id }}">{{ $product->name }}</option>
                               @endforeach
@@ -31,9 +32,9 @@
                           <input type="number" name="products[1][cantidad]" required>
                       </div>
                   </div>
-                  <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+                  <button type="button" class="btn btn-primary" onclick="agregarProducto()">Agregar Producto</button>
 
-                  <button type="submit">Guardar Venta</button>
+                  <button type="submit" class="btn btn-primary">Guardar Compra</button>
               </form>
                 </div>
             </div>
@@ -50,6 +51,7 @@
         <div class="product">
             <label for="product_${contadorProductos}">Producto:</label>
             <select name="products[${contadorProductos}][id]" required>
+                <option value="">Seleccione un producto</option>
                 @foreach($products as $product)
                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                 @endforeach
