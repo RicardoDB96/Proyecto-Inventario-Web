@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Dashboard;
+use App\Models\User;
+use App\Models\Supplier;
+use App\Models\Product;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 
@@ -10,9 +14,16 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
-        return view('dashboards.index');
+         $totalUsers = User::count();
+         $totalSuppliers = Supplier::count();
+         $totalProducts = Product::count();
+         $totalCategories = Category::count();
+
+         return view('dashboards.index', compact('totalUsers','totalSuppliers','totalProducts','totalCategories'));
     }
 
     /**
