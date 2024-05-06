@@ -13,7 +13,7 @@
                   </svg>
             </div>
             <div class="textDash">
-                <h1>4</h1>
+                <h1>{{$totalUsers}}</h1>
                 <h3>USERS</h1>
             </div>
         </div>
@@ -26,7 +26,7 @@
                   </svg>
             </div>
             <div class="textDash">
-                <h1>2</h1>
+                <h1>{{$totalSuppliers}}</h1>
                 <h3>SUPPLIERS</h3>
             </div>
         </div>
@@ -40,7 +40,7 @@
                   </svg>
             </div>
             <div class="textDash">
-                <h1>12</h1>
+                <h1>{{$totalProducts}}</h1>
                 <h3>PRODUCTS</h3>
             </div>
         </div>
@@ -52,7 +52,7 @@
                   </svg>
             </div>
             <div class="textDash">
-                <h1>4</h1>
+                <h1>{{$totalCategories}}</h1>
                 <h3>CATEGORIES</h1>
             </div>
         </div>
