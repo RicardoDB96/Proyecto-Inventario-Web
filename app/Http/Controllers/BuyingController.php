@@ -7,6 +7,8 @@ use Illuminate\View\View;
 use App\Models\Product;
 use App\Models\Buying;
 use App\Models\BuyingRows;
+use App\Models\Inventory;
+use App\Models\InventoryLog;
 
 class BuyingController extends Controller
 {
@@ -49,6 +51,20 @@ class BuyingController extends Controller
                 'total' => ($subtotal * $iva) + $subtotal, // En este caso, total es igual a subtotal
             ]);
             $buying->rows()->save($row);
+
+            // Actualizar las compras en el inventario
+            $inventario = Inventory::findOrFail($product['id']);
+            $inventario->aumentar($product['cantidad']);
+
+            // Registro del inventario
+            InventoryLog::create([
+                'entity_id' => 1,
+                'inventory_id' => $inventario->id,
+                'initial_inventory' => $inventario->amount - $product['cantidad'],
+                'delta_inventory' => $product['cantidad'],
+                'final_inventory' => $inventario->amount,
+                'row_id' => $row->id,
+            ]);
         }
 
         // Añadimps el subtotal total a la selling

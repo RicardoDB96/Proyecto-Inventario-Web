@@ -55,5 +55,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('sellings', SellingController::class);
     Route::resource('buyings', BuyingController::class);
     Route::resource('categories', CategoryController::class);
-    Route::resource('bitacories', BitacoryController::class);
+    Route::resource('bitacories', InventoryLogController::class);
 });

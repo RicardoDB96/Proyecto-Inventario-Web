@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Inventory;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,14 @@ class ProductController extends Controller
             'is_active' => 'required',
         ]);
 
-        Product::create($request->all());
+        $product = Product::create($request->all());
+        
+        // Se crea el inventario de manera inmediata cuando se crea el producto
+        Inventory::create([
+            "amount"=> 0,
+            "product_id"=>$product->id,
+        ]);
+        
         return redirect()->route('products.index')->with('success','Nuevo Producto creado exitosamente!');
     }
 

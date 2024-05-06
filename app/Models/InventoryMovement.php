@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class InventoryMovement extends Model
 {
     use HasFactory;
+
+    public function inventoryLogs()
+    {
+        return $this->hasMany(InventoryLog::class);
+    }
 }

@@ -16,7 +16,7 @@ class InventoryController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $inventories = Inventory::latest()->paginate(4);
+        $inventories = Inventory::latest()->paginate(10);
 
         return view('inventories.index',['inventories'=>$inventories]);
     }
