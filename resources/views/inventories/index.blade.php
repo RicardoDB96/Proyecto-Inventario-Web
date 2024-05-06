@@ -4,11 +4,8 @@
 
 <div class="place">
     <h1>Inventories</h1>
-    <a href="{{route('inventories.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW INVENTORY</button></a>
 </div>
-<div class="place" id="placeCel1">
-    <a href="{{route('inventories.create')}}" class="linkButton"><button class="button">NEW INVENTORY</button></a>
-</div>
+
 <div class="place" id="placeCel2">
     <select name="categorias">
         <option value="">-- Buscar por: --</option>
@@ -64,7 +61,6 @@
                     </th>
                     <th>{{$inventory->created_at}}</th>
                     <th>
-                        <a href="{{route('inventories.edit', $inventory)}}" class="btn btn-warning">Editar</a>
 
                         <form action="{{route('inventories.destroy', $inventory)}}" method="POST" class="d-inline">
                             @csrf

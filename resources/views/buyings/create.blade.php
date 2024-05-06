@@ -11,6 +11,14 @@
                         <a href="{{ route('buyings.index') }}"><button class="btn btn-secondary">Back</button></a>
                     </div>
                 </div>
+
+
+                @if (Session::get('error'))
+                <div class="alert alert-danger">
+                    <strong>{{Session::get('error')}}</strong>
+                </div>
+                 @endif
+
                 <div class="card-body">
                 <form action="{{ route('buyings.store') }}" method="POST">
                   @csrf

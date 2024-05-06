@@ -7,6 +7,10 @@
     <a href="{{ route('categories.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
 </div>
 
+<div class="place" id="placeCel1">
+    <a href="{{ route('categories.index') }}" class="linkButton"><button class="button">Back</button></a>
+</div>
+
 <div class="tableInfo table-responsive">
     <table class="table table-bordered text">
         <thead class="thead">

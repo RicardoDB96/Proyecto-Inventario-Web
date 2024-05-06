@@ -8,6 +8,10 @@
         <a href="{{ route('category.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
     </div>
 </div>
+<div class="place" id="placeCel1">
+    <a href="{{ route('categories.create') }}" class="linkButton"><button class="button" >New Category</button></a>
+        <a href="{{ route('category.logs') }}" class="linkButton"><button class="button" >See Logs</button></a>
+</div>
 <div class="place" id="placeCel2">
     <select name="categorias">
         <option value="">-- Buscar por: --</option>
@@ -17,8 +21,11 @@
     </select>
 </div>
 <div class="place">
-    <div class="searchBox">
-        <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+    <div class="searchBox form-group">
+        <form method="GET" action="{{route('products.search')}}" class="d-flex">
+            <input class="form-control" name="query"  placeholder="Search..." >
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
 
     <select name="categorias" id="categoriasPlace">

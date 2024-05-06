@@ -3,10 +3,16 @@
 @section('content')
     <div class="place">
         <h1>Products</h1>
-        <a href="{{route('products.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW PRODUCT</button></a>
+        <div class="button-group">
+            <a href="{{route('products.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW PRODUCT</button></a>
+            <a href="{{ route('products.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
+        </div>
     </div>
     <div class="place" id="placeCel1">
-        <a href="{{route('products.create')}}" class="linkButton"><button class="button">NEW PRODUCT</button></a>
+        <div class="button-group">
+            <a href="{{route('products.create')}}" class="linkButton"><button class="button" >NEW PRODUCT</button></a>
+            <a href="{{ route('products.index') }}" class="linkButton"><button class="button" >Back</button></a>
+        </div>
     </div>
     <div class="place" id="placeCel2">
         <select name="categorias">

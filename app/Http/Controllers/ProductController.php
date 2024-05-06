@@ -48,8 +48,8 @@ class ProductController extends Controller
             "amount"=> 0,
             "product_id"=>$product->id,
         ]);
-        
-        return redirect()->route('products.index')->with('success','New Product have been successfully created!');
+
+        return redirect()->route('products.index')->with('success','New Product and its Inventory have been successfully created!');
     }
 
     /**
@@ -97,4 +97,16 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success','The Product have been successfully deleted!');
     }
+
+    public function search()
+    {
+        $search_text = $_GET['query'];
+        $products = Product::where('name','LIKE', '%' . $search_text . '%')
+        ->orWhere('category_id','LIKE','%'.$search_text.'%')
+        ->paginate(8);
+
+        return view('products.search',compact('products'));
+    }
+
+
 }

@@ -74,7 +74,7 @@
                                 <select name="is_active" class="form-select" id="">
                                     <option value="">-- Elige el status --</option>
                                     <option value="1" @selected("1" == $product->is_active)>Activo</option>
-                                    <option value="0" @selected("1" == $product->is_active)>Inactivo</option>
+                                    <option value="0" @selected("0" == $product->is_active)>Inactivo</option>
                                 </select>
                             </div>
                         </div>

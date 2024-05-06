@@ -1,22 +1,42 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="place">
-        <h1>Buying</h1>
-        <a href="{{route('buyings.create')}}" class="linkButton"><button class="button">NEW BUYING</button></a>
+<div class="place">
+    <h1>Buyings</h1>
+    <a href="{{route('buyings.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW BUYING</button></a>
+</div>
+<div class="place" id="placeCel1">
+    <a href="{{route('buyings.create')}}" class="linkButton"><button class="button">NEW BUYING</button></a>
+</div>
+<div class="place" id="placeCel2">
+    <select name="categorias">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
+<div class="place">
+    <div class="searchBox form-group">
+        <form method="GET" action="{{route('products.search')}}" class="d-flex">
+            <input class="form-control" name="query"  placeholder="Search..." >
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
-    <div class="place">
-        <div class="searchBox">
-            <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
-        </div>
 
-        <select name="categorias">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
+    <select name="categorias" id="categoriasPlace">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
+
+    @if (Session::get('success'))
+    <div class="alert alert-success">
+        <strong>{{Session::get('success')}}</strong>
     </div>
+     @endif
 
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
@@ -28,7 +48,7 @@
                     <th>Subtotal</th>
                     <th>IVA</th>
                     <th>Total</th>
-                    <th>Actions</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -41,15 +61,6 @@
                         <th>{{$buying->subtotal}}</th>
                         <th>{{$buying->iva}}</th>
                         <th>{{$buying->total}}</th>
-                        <th>
-                            <a href="" class="btn btn-warning">Editar</a>
-
-                            <form action="" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </th>
                     </tr>
 
                 @empty
