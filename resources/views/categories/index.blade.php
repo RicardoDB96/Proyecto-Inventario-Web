@@ -9,8 +9,10 @@
     </div>
 </div>
 <div class="place" id="placeCel1">
-    <a href="{{ route('categories.create') }}" class="linkButton"><button class="button" >New Category</button></a>
+    <div class="button-group">
+        <a href="{{ route('categories.create') }}" class="linkButton"><button class="button" >New Category</button></a>
         <a href="{{ route('category.logs') }}" class="linkButton"><button class="button" >See Logs</button></a>
+    </div>
 </div>
 <div class="place" id="placeCel2">
     <select name="categorias">
@@ -45,7 +47,7 @@
 <div class="tableInfo table-responsive">
     <table class="table table-bordered text">
         <thead class="thead">
-            <tr class="text-black">
+            <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Status</th>

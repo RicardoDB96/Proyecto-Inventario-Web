@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $category = Category::create($request->all());
 
         // Registrar la acción de creación en el log
-        CategoryLogs::createLog($category->id, auth()->user()->id, 'created', 'Product created');
+        CategoryLogs::createLog($category->id, auth()->user()->id, 'created', 'Category created');
 
         return redirect()->route('categories.index')->with('success','New Category have been successfully created!');
     }
@@ -94,7 +94,7 @@ class CategoryController extends Controller
         } else {
             $description = "Category updated";
         }
-    
+
 
         // Registrar la acción de actualización en el log
         CategoryLogs::createLog($id, auth()->user()->id, 'updated', $description);
@@ -112,9 +112,9 @@ class CategoryController extends Controller
         $category->deleted = 1;
         $category->save();
 
-        
+
         // Registrar la acción de eliminación en el log
-        CategoryLogs::createLog($id, auth()->user()->id, 'deleted', 'Product deleted');
+        CategoryLogs::createLog($id, auth()->user()->id, 'deleted', 'Category deleted');
 
         return redirect()->route('categories.index')->with('success','The Category have been successfully deleted!');
     }

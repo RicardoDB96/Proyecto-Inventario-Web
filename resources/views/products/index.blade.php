@@ -3,10 +3,10 @@
 @section('content')
     <div class="place">
         <h1>Products</h1>
-        <a href="{{route('products.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW PRODUCT</button></a>
+        <a href="{{route('products.create')}}" class="linkButton"><button class="button" id="buttonPlace">New Product</button></a>
     </div>
     <div class="place" id="placeCel1">
-        <a href="{{route('products.create')}}" class="linkButton"><button class="button">NEW PRODUCT</button></a>
+        <a href="{{route('products.create')}}" class="linkButton"><button class="button">New Product</button></a>
     </div>
     <div class="place" id="placeCel2">
         <select name="categorias">
@@ -41,7 +41,7 @@
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">
-                <tr class="text-black">
+                <tr>
                     <th>Id</th>
                     <th>Product Name</th>
                     <th>Description</th>

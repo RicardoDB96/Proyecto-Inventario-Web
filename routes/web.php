@@ -58,7 +58,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('bitacories', InventoryLogController::class);
     Route::resource('dashboards', DashboardController::class);
+    /**LOGS */
     Route::get('/category/logs', [CategoryController::class, 'logs'])->name('category.logs');
+    Route::get('/supplier/logs', [SupplierController::class, 'logs'])->name('supplier.logs');
+    Route::get('/role/logs', [RoleController::class, 'logs'])->name('role.logs');
+
+    /**SEARCH */
     Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 
 });

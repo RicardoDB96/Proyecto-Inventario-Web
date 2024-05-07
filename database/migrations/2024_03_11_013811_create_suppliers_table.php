@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name',255)->comment('Nombre del proveedor');
             $table->string('address',255)->comment('Dirección del proveedor');
             $table->string('contact_phone',13)->comment('Número de contacto');
+            $table->boolean('deleted',255)->default(0)->comment('Supplier fue borrada');
 
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');

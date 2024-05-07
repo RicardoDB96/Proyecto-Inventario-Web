@@ -3,10 +3,16 @@
 @section('content')
 <div class="place">
     <h1>Suppliers</h1>
-    <a href="{{route('suppliers.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW SUPPLIER</button></a>
+    <div class="button-group">
+        <a href="{{ route('suppliers.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Supplier</button></a>
+        <a href="{{ route('supplier.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
+    </div>
 </div>
 <div class="place" id="placeCel1">
-    <a href="{{route('suppliers.create')}}" class="linkButton"><button class="button">NEW SUPPLIER</button></a>
+    <div class="button-group">
+        <a href="{{ route('suppliers.create') }}" class="linkButton"><button class="button">New Supplier</button></a>
+        <a href="{{ route('supplier.logs') }}" class="linkButton"><button class="button">See Logs</button></a>
+    </div>
 </div>
 <div class="place" id="placeCel2">
     <select name="categorias">
@@ -38,7 +44,7 @@
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">
-                <tr class="text-black">
+                <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Address</th>

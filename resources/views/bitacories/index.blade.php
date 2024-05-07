@@ -26,7 +26,7 @@
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">
-                <tr class="text-black">
+                <tr>
                     <th>Movement type</th>
                     <th>Product Name</th>
                     <th>Initial inventory</th>

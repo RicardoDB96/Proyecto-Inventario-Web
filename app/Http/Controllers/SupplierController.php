@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
+use App\Models\SupplierLogs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -16,7 +17,7 @@ class SupplierController extends Controller
     public function index(): View
     {
         // Obtener todos los productos
-        $suppliers = Supplier::latest()->paginate(4);
+        $suppliers = Supplier::where('deleted', false)->paginate(4);
 
         return view('suppliers.index',['suppliers'=>$suppliers]);
     }
@@ -40,7 +41,11 @@ class SupplierController extends Controller
             'is_active' => 'required',
         ]);
 
-        Supplier::create($request->all());
+        $supplier = Supplier::create($request->all());
+
+        // Registrar la acción de creación en el log
+        SupplierLogs::createLog($supplier->id, auth()->user()->id, 'created', 'Supplier created');
+
         return redirect()->route('suppliers.index')->with('success','New Supplier have been successfully created!');
     }
 
@@ -76,7 +81,23 @@ class SupplierController extends Controller
         ]);
 
         $supplier = Supplier::where('id', $id)->first();
+
+        $oldName = $supplier->name;
+
         $supplier->update($request->all());
+
+        $newName = $supplier->name;
+
+        if ($oldName !== $newName) {
+            $description = "Supplier name updated from '{$oldName}' to '{$newName}'";
+        } else {
+            $description = "Supplier updated";
+        }
+
+
+        // Registrar la acción de actualización en el log
+        SupplierLogs::createLog($id, auth()->user()->id, 'updated', $description);
+
         return redirect()->route('suppliers.index')->with('success','The Supplier have been successfully updated!');
     }
 
@@ -85,8 +106,21 @@ class SupplierController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
+
         $supplier = Supplier::where('id', $id)->first();
-        $supplier->delete();
+        $supplier->deleted = 1;
+        $supplier->save();
+
+
+        // Registrar la acción de eliminación en el log
+        SupplierLogs::createLog($id, auth()->user()->id, 'deleted', 'Supplier deleted');
+
         return redirect()->route('suppliers.index')->with('success','The Supplier have been successfully deleted!');
+    }
+
+    public function logs()
+    {
+        $logs = SupplierLogs::all();
+        return view('suppliers.logs', compact('logs'));
     }
 }

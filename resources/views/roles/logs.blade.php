@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="place">
-    <h1>Category Logs</h1>
-    <a href="{{ route('categories.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
+    <h1>Roles Logs</h1>
+    <a href="{{ route('roles.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
 </div>
 
 <div class="place" id="placeCel1">
-    <a href="{{ route('categories.index') }}" class="linkButton"><button class="button">Back</button></a>
+    <a href="{{ route('roles.index') }}" class="linkButton"><button class="button">Back</button></a>
 </div>
 
 <div class="tableInfo table-responsive">
@@ -16,7 +16,7 @@
         <thead class="thead">
             <tr>
                 <th>ID</th>
-                <th>Category ID</th>
+                <th>Role ID</th>
                 <th>User ID</th>
                 <th>Action</th>
                 <th>Description</th> <!-- Nueva columna para la descripción -->
@@ -27,7 +27,7 @@
             @foreach ($logs as $log)
             <tr>
                 <td>{{ $log->id }}</td>
-                <td>{{ $log->category_id }}</td>
+                <td>{{ $log->role_id }}</td>
                 <td>{{ $log->user_id }}</td>
                 <td>{{ $log->action }}</td>
                 <td>{{ $log->description }}</td> <!-- Mostrar la descripción -->

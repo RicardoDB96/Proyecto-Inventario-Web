@@ -41,7 +41,7 @@
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">
-                <tr class="text-black">
+                <tr>
                     <th>Id</th>
                     <th>Client</th>
                     <th>Buying at</th>

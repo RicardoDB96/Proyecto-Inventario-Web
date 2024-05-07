@@ -38,7 +38,7 @@
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">
-                <tr class="text-black">
+                <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Last Name</th>

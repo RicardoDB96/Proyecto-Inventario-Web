@@ -17,6 +17,7 @@ return new class extends Migration
             //ROLES INVENTORY SYSTEM
             $table->increments('id')->comment('Rol');
             $table->string('name',255)->comment('Nombre del rol');
+            $table->boolean('deleted',255)->default(0)->comment('Supplier fue borrada');
 
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');

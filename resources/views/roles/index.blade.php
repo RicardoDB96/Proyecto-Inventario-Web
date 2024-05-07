@@ -3,10 +3,16 @@
 @section('content')
 <div class="place">
     <h1>Roles</h1>
-    <a href="{{route('roles.create')}}" class="linkButton"><button class="button" id="buttonPlace">NEW ROLE</button></a>
+    <div class="button-group">
+        <a href="{{ route('roles.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Role</button></a>
+        <a href="{{ route('role.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
+    </div>
 </div>
 <div class="place" id="placeCel1">
-    <a href="{{route('roles.create')}}" class="linkButton"><button class="button">NEW ROLE</button></a>
+    <div class="button-group">
+        <a href="{{ route('roles.create') }}" class="linkButton"><button class="button" >New Role</button></a>
+        <a href="{{ route('role.logs') }}" class="linkButton"><button class="button" >See Logs</button></a>
+    </div>
 </div>
 <div class="place" id="placeCel2">
     <select name="categorias">
@@ -38,7 +44,7 @@
     <div class="tableInfo table-responsive">
         <table class="table table-bordered text">
             <thead class="thead">
-                <tr class="text-black">
+                <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Status</th>

@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\RoleLogs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class RoleController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
         // Obtener todos los productos
-        $roles = Role::latest()->paginate(4);
+        $roles = Role::where('deleted', false)->paginate(4);
 
         return view('roles.index',['roles'=>$roles]);
     }
@@ -40,8 +41,12 @@ class RoleController extends Controller
             'is_active' => 'required',
         ]);
 
-        Role::create($request->all());
-        return redirect()->route('roles.index')->with('success','New Supplier have been successfully created!');
+        $role = Role::create($request->all());
+
+        // Registrar la acción de creación en el log
+        RoleLogs::createLog($role->id, auth()->user()->id, 'created', 'Role created');
+
+        return redirect()->route('roles.index')->with('success','New Role have been successfully created!');
     }
 
     /**
@@ -76,7 +81,23 @@ class RoleController extends Controller
         ]);
 
         $role = Role::where('id', $id)->first();
+
+        $oldName = $role->name;
+
         $role->update($request->all());
+
+        $newName = $role->name;
+
+        if ($oldName !== $newName) {
+            $description = "Role name updated from '{$oldName}' to '{$newName}'";
+        } else {
+            $description = "Role updated";
+        }
+
+
+        // Registrar la acción de actualización en el log
+        RoleLogs::createLog($id, auth()->user()->id, 'updated', $description);
+
         return redirect()->route('roles.index')->with('success','The Role have been successfully updated!');
     }
 
@@ -85,8 +106,21 @@ class RoleController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
+
         $role = Role::where('id', $id)->first();
-        $role->delete();
+        $role->deleted = 1;
+        $role->save();
+
+
+        // Registrar la acción de eliminación en el log
+        RoleLogs::createLog($id, auth()->user()->id, 'deleted', 'Role deleted');
+
         return redirect()->route('roles.index')->with('success','The Role have been successfully deleted!');
+    }
+
+    public function logs()
+    {
+        $logs = RoleLogs::all();
+        return view('roles.logs', compact('logs'));
     }
 }
