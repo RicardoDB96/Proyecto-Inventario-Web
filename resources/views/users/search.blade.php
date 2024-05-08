@@ -4,12 +4,14 @@
 <div class="place">
     <h1>Users</h1>
     <div class="button-group">
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
+        <a href="{{route('users.create')}}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
+        <a href="{{ route('users.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel1">
     <div class="button-group">
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
+        <a href="{{route('users.create')}}" class="linkButton"><button class="button" >New User</button></a>
+        <a href="{{ route('users.index') }}" class="linkButton"><button class="button">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel2">

@@ -123,4 +123,15 @@ class RoleController extends Controller
         $logs = RoleLogs::all();
         return view('roles.logs', compact('logs'));
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');
+        $roles = Role::where('name','LIKE', '%' . $search_text . '%')
+        ->paginate(3);
+
+        $roles->appends(['query' => $search_text]);
+
+        return view('roles.search',compact('roles'));
+    }
 }

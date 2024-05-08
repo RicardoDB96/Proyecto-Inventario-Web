@@ -23,8 +23,11 @@
     </select>
 </div>
 <div class="place">
-    <div class="searchBox">
-        <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+    <div class="searchBox form-group">
+        <form method="GET" action="{{route('supplier.search')}}" class="d-flex">
+            <input class="form-control" name="query"  placeholder="Search..." >
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
 
     <select name="categorias" id="categoriasPlace">

@@ -125,4 +125,15 @@ class CategoryController extends Controller
         return view('categories.logs', compact('logs'));
     }
 
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $categories = Category::where('name','LIKE', '%' . $search_text . '%')
+        ->paginate(3);
+
+        $categories->appends(['query' => $search_text]);
+
+        return view('categories.search',compact('categories'));
+    }
+
 }

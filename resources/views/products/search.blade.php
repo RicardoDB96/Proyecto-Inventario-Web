@@ -10,7 +10,7 @@
     </div>
     <div class="place" id="placeCel1">
         <div class="button-group">
-            <a href="{{route('products.create')}}" class="linkButton"><button class="button" >NEW PRODUCT</button></a>
+            <a href="{{route('products.create')}}" class="linkButton"><button class="button" >New Product</button></a>
             <a href="{{ route('products.index') }}" class="linkButton"><button class="button" >Back</button></a>
         </div>
     </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="place">
         <div class="searchBox form-group">
-            <form method="GET" action="{{route('products.search')}}" class="d-flex">
+            <form method="GET" action="{{route('product.search')}}" class="d-flex">
                 <input class="form-control" name="query"  placeholder="Search..." >
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>

@@ -6,12 +6,14 @@
     <div class="button-group">
         <a href="{{ route('categories.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Category</button></a>
         <a href="{{ route('category.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
+        <a href="{{ route('categories.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel1">
     <div class="button-group">
         <a href="{{ route('categories.create') }}" class="linkButton"><button class="button" >New Category</button></a>
         <a href="{{ route('category.logs') }}" class="linkButton"><button class="button" >See Logs</button></a>
+        <a href="{{ route('categories.index') }}" class="linkButton"><button class="button">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel2">

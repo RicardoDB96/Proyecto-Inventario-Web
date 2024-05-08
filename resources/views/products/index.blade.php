@@ -1,36 +1,40 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="place">
-        <h1>Products</h1>
-        <a href="{{route('products.create')}}" class="linkButton"><button class="button" id="buttonPlace">New Product</button></a>
+<div class="place">
+    <h1>Products</h1>
+    <div class="button-group">
+        <a href="{{ route('products.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Product</button></a>
     </div>
-    <div class="place" id="placeCel1">
-        <a href="{{route('products.create')}}" class="linkButton"><button class="button">New Product</button></a>
+</div>
+<div class="place" id="placeCel1">
+    <div class="button-group">
+        <a href="{{ route('products.create') }}" class="linkButton"><button class="button">New Products</button></a>
     </div>
-    <div class="place" id="placeCel2">
-        <select name="categorias">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
+</div>
+<div class="place" id="placeCel2">
+    <select name="categorias">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
+<div class="place">
+    <div class="searchBox form-group">
+        <form method="GET" action="{{route('product.search')}}" class="d-flex">
+            <input class="form-control" name="query"  placeholder="Search..." >
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
-    <div class="place">
-        <div class="searchBox form-group">
-            <form method="GET" action="{{route('products.search')}}" class="d-flex">
-                <input class="form-control" name="query"  placeholder="Search..." >
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
 
-        <select name="categorias" id="categoriasPlace">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
-    </div>
+    <select name="categorias" id="categoriasPlace">
+        <option value="">-- Buscar por: --</option>
+        <option value="1">Nombre</option>
+        <option value="2">Fecha</option>
+        <option value="3">Cantidad</option>
+    </select>
+</div>
 
     @if (Session::get('success'))
         <div class="alert alert-success">

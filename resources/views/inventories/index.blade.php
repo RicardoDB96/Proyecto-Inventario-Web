@@ -4,8 +4,15 @@
 
 <div class="place">
     <h1>Inventories</h1>
-</div>
+    <div class="button-group">
 
+    </div>
+</div>
+<div class="place" id="placeCel1">
+    <div class="button-group">
+
+    </div>
+</div>
 <div class="place" id="placeCel2">
     <select name="categorias">
         <option value="">-- Buscar por: --</option>
@@ -15,8 +22,11 @@
     </select>
 </div>
 <div class="place">
-    <div class="searchBox">
-        <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+    <div class="searchBox form-group">
+        <form method="GET" action="{{route('inventory.search')}}" class="d-flex">
+            <input class="form-control" name="query"  placeholder="Search..." >
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
 
     <select name="categorias" id="categoriasPlace">

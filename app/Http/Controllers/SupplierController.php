@@ -123,4 +123,17 @@ class SupplierController extends Controller
         $logs = SupplierLogs::all();
         return view('suppliers.logs', compact('logs'));
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $suppliers = Supplier::where('name','LIKE', '%' . $search_text . '%')
+        ->orWhere('address','LIKE','%'.$search_text.'%')
+        ->orWhere('contact_phone','LIKE','%'.$search_text.'%')
+        ->paginate(3);
+
+        $suppliers->appends(['query' => $search_text]);
+
+        return view('suppliers.search',compact('suppliers'));
+    }
 }

@@ -86,7 +86,7 @@ class BuyingController extends Controller
 
         // Redirigir al usuario a una página de confirmación
         return redirect()->route('buyings.index')->with('success', 'La compra ha sido registrada correctamente.');
-    } 
+    }
 
     /**
      * Display the specified resource.
@@ -98,5 +98,16 @@ class BuyingController extends Controller
 
         // Pasar los datos del producto a la vista
         return view('buyings.show', compact('buying_rows'));
+    }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $buyings = Buying::where('client','LIKE', '%' . $search_text . '%')
+        ->paginate(3);
+
+        $buyings->appends(['query' => $search_text]);
+
+        return view('buyings.search',compact('buyings'));
     }
 }

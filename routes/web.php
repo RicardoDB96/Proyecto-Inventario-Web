@@ -64,6 +64,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/role/logs', [RoleController::class, 'logs'])->name('role.logs');
 
     /**SEARCH */
-    Route::get('/search', [ProductController::class, 'search'])->name('products.search');
-
+    Route::get('/product/search', [ProductController::class, 'search'])->name('product.search');
+    Route::get('/role/search', [RoleController::class, 'search'])->name('role.search');
+    Route::get('/supplier/search', [SupplierController::class, 'search'])->name('supplier.search');
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
+    Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
+    Route::get('/selling/search', [SellingController::class, 'search'])->name('selling.search');
+    Route::get('/inventory/search', [InventoryController::class, 'search'])->name('inventory.search');
+    Route::get('/bitacory/search', [InventoryLogController::class, 'search'])->name('bitacory.search');
+    Route::get('/buying/search', [BuyingController::class, 'search'])->name('buying.search');
 });

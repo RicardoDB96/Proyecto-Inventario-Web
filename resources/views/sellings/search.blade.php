@@ -5,11 +5,13 @@
         <h1>Sellings</h1>
         <div class="button-group">
             <a href="{{route('sellings.create')}}" class="linkButton"><button class="button" id="buttonPlace">New Selling</button></a>
+            <a href="{{ route('sellings.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
         </div>
     </div>
     <div class="place" id="placeCel1">
         <div class="button-group">
             <a href="{{route('sellings.create')}}" class="linkButton"><button class="button">New Selling</button></a>
+            <a href="{{ route('sellings.index') }}" class="linkButton"><button class="button">Back</button></a>
         </div>
     </div>
     <div class="place" id="placeCel2">

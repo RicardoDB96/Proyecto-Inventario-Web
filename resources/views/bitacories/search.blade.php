@@ -4,12 +4,12 @@
 <div class="place">
     <h1>Bitacories</h1>
     <div class="button-group">
-
+        <a href="{{ route('bitacories.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel1">
     <div class="button-group">
-
+        <a href="{{ route('bitacories.index') }}" class="linkButton"><button class="button">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel2">
