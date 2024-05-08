@@ -9,7 +9,7 @@
 </div>
 <div class="place" id="placeCel1">
     <div class="button-group">
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
+        <a href="{{ route('users.create') }}" class="linkButton"><button class="button">New User</button></a>
     </div>
 </div>
 <div class="place" id="placeCel2">
