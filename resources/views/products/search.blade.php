@@ -14,15 +14,8 @@
             <a href="{{ route('products.index') }}" class="linkButton"><button class="button" >Back</button></a>
         </div>
     </div>
-    <div class="place" id="placeCel2">
-        <select name="categorias">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
-    </div>
-    <div class="place">
+
+    <div class="place d-flex column flex-wrap align-items-end ">
         <div class="searchBox form-group">
             <form method="GET" action="{{route('product.search')}}" class="d-flex">
                 <input class="form-control" name="query"  placeholder="Search..." >
@@ -30,12 +23,44 @@
             </form>
         </div>
 
-        <select name="categorias" id="categoriasPlace">
-            <option value="">-- Buscar por: --</option>
-            <option value="1">Nombre</option>
-            <option value="2">Fecha</option>
-            <option value="3">Cantidad</option>
-        </select>
+        <div class=" form-group mt-3" id="categoriasPlace">
+            <form method="GET" action="/filter" class="d-flex column flex-wrap justify-content-center">
+                <div>
+                    <label>Start Date: </label>
+                    <input type="date" name="start_date" class="form-control">
+                </div>
+                <div>
+                    <label>End Date: </label>
+                    <input type="date" name="end_date" class="form-control">
+                </div>
+
+                <div class="d-flex align-items-end ">
+                    <button type="submit" class="btn btn-primary py-3 px-3">Filter</button>
+                    <a href="{{ route('products.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="place" id="placeCel2">
+        <div class="form-group">
+            <form method="GET" action="/filter" class="d-flex row flex-wrap justify-content-center">
+                <div class="mb-3">
+                    <label>Start Date: </label>
+                    <input type="date" name="start_date" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>End Date: </label>
+                    <input type="date" name="end_date" class="form-control">
+                </div>
+
+                <div class="d-flex align-items-end justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary py-3 px-3 ">Filter</button>
+                    <a href="{{ route('products.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
+                </div>
+            </form>
+        </div>
     </div>
 
     @if (Session::get('success'))

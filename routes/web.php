@@ -15,6 +15,9 @@ use App\Http\Controllers\BitacoryController;
 use App\Http\Controllers\BuyingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SellingController;
+use App\Models\Inventory;
+use App\Models\InventoryLog;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,4 +76,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/inventory/search', [InventoryController::class, 'search'])->name('inventory.search');
     Route::get('/bitacory/search', [InventoryLogController::class, 'search'])->name('bitacory.search');
     Route::get('/buying/search', [BuyingController::class, 'search'])->name('buying.search');
+
+    /*FILTER*/
+    Route::get('/product/filter', [ProductController::class, 'filter']);
+    Route::get('/inventory/filter', [InventoryController::class, 'filter']);
+    Route::get('/bitacory/filter', [InventoryLogController::class, 'filter']);
+    Route::get('/category/filter', [CategoryController::class, 'filter']);
+    Route::get('/supplier/filter', [SupplierController::class, 'filter']);
+    Route::get('/role/filter', [RoleController::class, 'filter']);
+    Route::get('/user/filter', [UserController::class, 'filter']);
+    Route::get('/selling/filter', [SellingController::class, 'filter']);
+    Route::get('/buying/filter', [BuyingController::class, 'filter']);
 });

@@ -102,4 +102,16 @@ class InventoryController extends Controller
 
         return view('inventories.search',compact('inventories'));
     }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $inventories = Inventory::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $inventories->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('inventories.index',compact('inventories'));
+    }
 }

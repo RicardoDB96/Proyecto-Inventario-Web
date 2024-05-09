@@ -31,4 +31,16 @@ class InventoryLogController extends Controller
 
         return view('bitacories.search',compact('inventory_logs'));
     }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $inventory_logs = InventoryLog::whereBetween('creation_date', [$startDate, $endDate])
+                            ->paginate(4);
+                            $inventory_logs->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('bitacories.index',compact('inventory_logs'));
+    }
 }

@@ -123,4 +123,16 @@ class SellingController extends Controller
 
         return view('sellings.search',compact('sellings'));
     }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $sellings = Selling::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $sellings->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('sellings.index',compact('sellings'));
+    }
 }

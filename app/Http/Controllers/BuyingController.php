@@ -110,4 +110,16 @@ class BuyingController extends Controller
 
         return view('buyings.search',compact('buyings'));
     }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $buyings = Buying::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $buyings->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('buyings.index',compact('buyings'));
+    }
 }

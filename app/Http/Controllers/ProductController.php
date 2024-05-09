@@ -113,5 +113,17 @@ class ProductController extends Controller
         return view('products.search',compact('products'));
     }
 
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $products = Product::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $products->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('products.index',compact('products'));
+    }
+
 
 }

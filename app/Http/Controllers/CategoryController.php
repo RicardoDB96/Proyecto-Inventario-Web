@@ -136,4 +136,16 @@ class CategoryController extends Controller
         return view('categories.search',compact('categories'));
     }
 
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $categories = Category::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $categories->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('categories.index',compact('categories'));
+    }
+
 }

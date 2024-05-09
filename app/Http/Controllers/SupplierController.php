@@ -136,4 +136,16 @@ class SupplierController extends Controller
 
         return view('suppliers.search',compact('suppliers'));
     }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $suppliers = Supplier::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $suppliers->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('suppliers.index',compact('suppliers'));
+    }
 }

@@ -183,4 +183,16 @@ class UserController extends Controller
 
         return view('users.search',compact('users'));
     }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $users = User::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $users->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('users.index',compact('users'));
+    }
 }
