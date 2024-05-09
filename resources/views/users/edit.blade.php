@@ -47,9 +47,9 @@
                             <div class="col-md-6">
                                 <select name="role_id" class="form-select" id="">
                                     <option value="">-- Elige el Role --</option>
-                                    <option value="1" @selected("1" == $user->role_id)>Admin</option>
-                                    <option value="2" @selected("2" == $user->role_id)>Special</option>
-                                    <option value="3" @selected("3" == $user->role_id)>User</option>
+                                    @foreach(\App\Models\Role::all() as $role)
+                                        <option value="{{ $role->id }}"  @selected($role->id == $user->role_id)>{{ $role->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
