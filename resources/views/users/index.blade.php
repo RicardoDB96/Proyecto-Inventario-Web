@@ -4,7 +4,9 @@
 <div class="place">
     <h1>Users</h1>
     <div class="button-group">
+    @if (Auth::check() && Auth::user()->hasRole('Admin'))
         <a href="{{ route('users.create') }}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
+        @endif
     </div>
 </div>
 <div class="place" id="placeCel1">
@@ -77,7 +79,9 @@
                     <th>Email</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    <th>Actions</th>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                        <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -97,15 +101,17 @@
                             @endif
                         </th>
                         <th>{{$user->created_at}}</th>
-                        <th>
-                            <a href="{{route('users.edit', $user)}}" class="btn btn-warning">Editar</a>
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                            <th>
+                                <a href="{{route('users.edit', $user)}}" class="btn btn-warning">Editar</a>
 
-                            <form action="{{route('users.destroy', $user)}}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </th>
+                                <form action="{{route('users.destroy', $user)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </th>
+                        @endif
                     </tr>
 
                 @empty

@@ -4,7 +4,9 @@
 <div class="place">
     <h1>Suppliers</h1>
     <div class="button-group">
+    @if (Auth::check() && Auth::user()->hasRole('Admin'))
         <a href="{{ route('suppliers.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Supplier</button></a>
+        @endif
         <a href="{{ route('supplier.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
     </div>
 </div>
@@ -78,7 +80,9 @@
                     <th>Phone</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    <th>Actions</th>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                        <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -97,6 +101,7 @@
                             @endif
                         </th>
                         <th>{{$supplier->created_at}}</th>
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
                         <th>
                             <a href="{{route('suppliers.edit', $supplier)}}" class="btn btn-warning">Editar</a>
 
@@ -106,6 +111,7 @@
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </th>
+                        @endif
                     </tr>
 
                 @empty

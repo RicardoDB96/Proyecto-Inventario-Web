@@ -4,7 +4,9 @@
 <div class="place">
     <h1>Roles</h1>
     <div class="button-group">
+    @if (Auth::check() && Auth::user()->hasRole('Admin'))
         <a href="{{ route('roles.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Role</button></a>
+    @endif
         <a href="{{ route('role.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
     </div>
 </div>
@@ -76,7 +78,9 @@
                     <th>Name</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    <th>Actions</th>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                        <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -93,6 +97,7 @@
                             @endif
                         </th>
                         <th>{{$role->created_at}}</th>
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
                         <th>
                             <a href="{{route('roles.edit', $role)}}" class="btn btn-warning">Editar</a>
 
@@ -102,6 +107,7 @@
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </th>
+                        @endif
                     </tr>
 
                 @empty

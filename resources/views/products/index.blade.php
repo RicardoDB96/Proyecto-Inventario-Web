@@ -4,7 +4,9 @@
 <div class="place">
     <h1>Products</h1>
     <div class="button-group" id="contenedorBoton">
+    @if (Auth::check() && Auth::user()->hasRole('Admin'))
         <a href="{{ route('products.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Product</button></a>
+        @endif
     </div>
 </div>
 <div class="place" id="placeCel1">
@@ -79,7 +81,9 @@
                     <th>Category</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    <th>Actions</th>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                        <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -100,6 +104,7 @@
                             @endif
                         </th>
                         <th>{{$product->created_at}}</th>
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
                         <th>
                             <div class="d-flex column flex-wrap gap-2">
                                 <a href="{{route('products.edit', $product)}}" class="btn btn-warning">Editar</a>
@@ -111,6 +116,7 @@
                                 </form>
                             </div>
                         </th>
+                        @endif
                     </tr>
 
                 @empty

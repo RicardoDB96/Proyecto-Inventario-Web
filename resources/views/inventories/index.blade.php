@@ -76,7 +76,9 @@
                 <th>Product</th>
                 <th>Status</th>
                 <th>Created_at</th>
-                <th>Actions</th>
+                @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                    <th>Actions</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -94,6 +96,7 @@
                         @endif
                     </th>
                     <th>{{$inventory->created_at}}</th>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
                     <th>
 
                         <form action="{{route('inventories.destroy', $inventory)}}" method="POST" class="d-inline">
@@ -102,6 +105,7 @@
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </th>
+                    @endif
                 </tr>
 
             @empty

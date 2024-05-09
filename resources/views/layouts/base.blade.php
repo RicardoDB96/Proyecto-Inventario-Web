@@ -97,13 +97,17 @@
                 <li>
                     <h3 class="titleSeccion wth">SUPPLIERS</h3>
                     <a href="{{route('suppliers.index')}}">Manage Suppliers</a>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
                     <a href="{{route('suppliers.create')}}">Add Supplier</a>
+                    @endif
                 </li>
                 <li><a href="{{route('categories.index')}}"><h3 class="titleSeccion">CATEGORIES</h3></a></li>
                 <li>
                     <h3 class="titleSeccion wth">PRODUCTS</h3>
                     <a href="{{route('products.index')}}">Manage Products</a>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
                     <a href="{{route('products.create')}}">Add Product</a>
+                    @endif
                 </li>
                 <li><a href="{{route('inventories.index')}}"><h3 class="titleSeccion">INVENTORIES</h3></a></li>
                 <li><a href="{{route('bitacories.index')}}"><h3 class="titleSeccion">BITACORIES</h3></a></li>
