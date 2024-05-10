@@ -63,11 +63,15 @@
             </ul>
           @endif
 
-          <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
+          <button type="submit" class="btn btn-custom">Log in</button>
         </form>
         
         <a href="/google-auth/redirect">
-            <button class="btn btn-custom">Iniciar Sesión con Google</button>
+            <button class="btn btn-custom">Log in with Google</button>
+        </a>
+
+        <a href="/github-auth/redirect">
+            <button class="btn btn-custom">Log in with Github</button>
         </a>
       </div>
     </div>

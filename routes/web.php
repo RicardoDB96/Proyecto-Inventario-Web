@@ -33,18 +33,49 @@ use App\Models\User;
 Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
+
+Route::get('/github-auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
  
 Route::get('/google-auth/callback', function () {
     $user_google = Socialite::driver('google')->stateless()->user();
  
-    $user = User::updateOrCreate([
-        'google_id' => $user_google->id,
-    ], [
-        'name' => $user_google->name,
-        'email' => $user_google->email,
-        'role_id' => 1,
-        'is_active' => true,
-    ]);
+    $user = User::updateOrCreate(
+        [
+            'email' => $user_google->email
+        ],
+        [
+            'name' => $user_google->name,
+            'email' => $user_google->email,
+            'google_id' => $user_google->id,
+            'avatar_url' => $user_google->avatar,
+            'role_id' => 1,
+            'is_active' => true,
+        ]
+    );
+
+    Auth::login($user);
+
+    return redirect('/');
+});
+
+Route::get('/github-auth/callback', function () {
+    $user_github = Socialite::driver('github')->stateless()->user();
+ 
+    $user = User::updateOrCreate(
+        [
+            'email' => $user_github->email
+        ],
+        [
+            'name' => $user_github->nickname,
+            'email' => $user_github->email,
+            'github_id' => $user_github->id,
+            'avatar_url' => $user_github->avatar,
+            'role_id' => 1,
+            'is_active' => true,
+        ]
+    );
 
     Auth::login($user);
 
