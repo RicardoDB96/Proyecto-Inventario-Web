@@ -7,6 +7,7 @@ use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class InventoryController extends Controller
 {
@@ -15,8 +16,13 @@ class InventoryController extends Controller
      */
     public function index(): View
     {
-        // Obtener todos los productos
-        $inventories = Inventory::latest()->paginate(10);
+        // Obtener la suma total de los inventarios agrupados por producto
+        $inventories = DB::table('inventories')
+            ->join('products', 'inventories.product_id', '=', 'products.id')
+            ->select('products.id', 'products.name as product_name', 'inventories.is_active', 'inventories.created_at', DB::raw('SUM(inventories.amount) as total_inventory'))
+            ->groupBy('products.id', 'products.name', 'inventories.is_active', 'inventories.created_at')
+            ->latest()
+            ->paginate(10);
 
         return view('inventories.index',['inventories'=>$inventories]);
     }

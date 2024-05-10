@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Inventory;
+use App\Models\Supplier;
+use App\Models\ProductSupplier;
 
 class ProductController extends Controller
 {
@@ -27,7 +29,8 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view(('products.create'));
+        $suppliers = Supplier::all();
+        return view(('products.create'), compact('suppliers'));
     }
 
     /**
@@ -43,11 +46,17 @@ class ProductController extends Controller
 
         $product = Product::create($request->all());
 
-        // Se crea el inventario de manera inmediata cuando se crea el producto
-        Inventory::create([
-            "amount"=> 0,
-            "product_id"=>$product->id,
-        ]);
+        // Se obtienen los IDs de los proveedores asociados al producto
+        $supplierIds = $request->suppliers;
+
+        foreach ($request->suppliers as $supplier) {
+            // Se crea el inventario de manera inmediata cuando se crea el producto
+            Inventory::create([
+                "amount"=> 0,
+                "product_id"=>$product->id,
+                "supplier_id" => $supplier['id'],
+            ]);
+        }
 
         return redirect()->route('products.index')->with('success','New Product and its Inventory have been successfully created!');
     }

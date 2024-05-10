@@ -9,6 +9,7 @@ use App\Models\Selling;
 use App\Models\SellingRows;
 use App\Models\Inventory;
 use App\Models\InventoryLog;
+use Illuminate\Support\Facades\DB;
 
 class SellingController extends Controller
 {
@@ -42,12 +43,14 @@ class SellingController extends Controller
 
         foreach ($request->products as $product) {
             // Recuperamos el inventario
-            $inventario = Inventory::findOrFail($product['id']);
-
+            $inventario = DB::table('inventories')
+            ->where('product_id', $product['id'])
+            ->sum('amount');
             // Verificar si la cantidad en el inventario es suficiente
-            if ($inventario->amount < $product['cantidad']) {
+            if ($inventario < $product['cantidad']) {
+                $product = Product::where('id', $product['id'])->first();
                 // No hay suficiente cantidad en el inventario, regresar con un mensaje de error
-                return redirect()->route('sellings.create')->with('error', 'No hay suficiente cantidad en el inventario para el producto ' . $inventario->product->name);
+                return redirect()->route('sellings.create')->with('error', 'No hay suficiente cantidad en el inventario para el producto ' . $product->name);
             }
         }
 
@@ -62,7 +65,7 @@ class SellingController extends Controller
         // Guardar los detalles de los productos
         foreach ($request->products as $product) {
             // Recuperamos el inventario
-            $inventario = Inventory::findOrFail($product['id']);
+            $inventario = Inventory::where('product_id', $product['id']);
 
             $product_model = Product::findOrFail($product['id']);
             $subtotal = $product['cantidad'] * $product_model->base_price;
@@ -77,9 +80,26 @@ class SellingController extends Controller
             ]);
             $selling->rows()->save($row);
 
-            // Actualizar las ventas en el inventario
-            $inventario = Inventory::findOrFail($product['id']);
-            $inventario->reducir($product['cantidad']);
+            // Obtén los inventarios ordenados por la fecha de creación de manera ascendente
+            $inventories = Inventory::where('product_id', $product['id'])->get();
+
+            // Cantidad total de la venta
+            $cantidad_venta = $product['cantidad'];
+
+            // Itera sobre cada inventario y reduce la cantidad de la venta
+            foreach ($inventories as $inventario) {
+                // Verifica si hay suficiente cantidad en este inventario
+                if ($inventario->amount >= $cantidad_venta) {
+                    // Reduzca la cantidad en este inventario y deténgase
+                    $inventario->reducir($cantidad_venta);
+                    break;
+                } else {
+                    // Reduzca la cantidad en este inventario a 0 y ajuste la cantidad de venta restante
+                    $cantidad_venta -= $inventario->amount;
+                    $inventario->amount = 0;
+                    $inventario->save();
+                }
+            }
 
             InventoryLog::create([
                 'entity_id' => 2,

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('buying_id')->references('id')->on('buyings');
             $table->integer('product_id')->nullable()->unsigned()->comment('Producto');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('supplier_id')->nullable()->unsigned()->comment('Proveedor');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->float('price',12,4)->nullable()->comment('Precio de la compra');
             $table->float('iva',10,4)->nullable()->comment('Iva de la compra');
             $table->integer('amount')->comment('Unidades vendidas');

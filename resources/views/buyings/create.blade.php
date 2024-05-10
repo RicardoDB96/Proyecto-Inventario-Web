@@ -39,10 +39,21 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
                                     <div class="form-group">
                                         <label for="producto_1" >Producto:</label>
-                                        <select name="products[1][id]" class="form-select" required>
+                                        <select name="products[1][p_id]" class="form-select" required>
                                             <option value="">Seleccione un producto</option>
                                             @foreach($products as $product)
                                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                                    <div class="form-group">
+                                        <label for="proveedor_1" >Supplier:</label>
+                                        <select name="products[1][s_id]" class="form-select" required>
+                                            <option value="">Select a supplier</option>
+                                            @foreach($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -82,10 +93,21 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
                                     <div class="form-group">
                                         <label for="product_${contadorProductos}" >Producto:</label>
-                                        <select name="products[${contadorProductos}][id]" class="form-select" required>
+                                        <select name="products[${contadorProductos}][p_id]" class="form-select" required>
                                             <option value="">Seleccione un producto</option>
                                             @foreach($products as $product)
                                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                                    <div class="form-group">
+                                        <label for="supplier_${contadorProductos}" >Supplier:</label>
+                                        <select name="products[${contadorProductos}][s_id]" class="form-select" required>
+                                            <option value="">Seleccione un proveedor</option>
+                                            @foreach($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

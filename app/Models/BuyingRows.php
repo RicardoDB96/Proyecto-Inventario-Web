@@ -10,7 +10,7 @@ class BuyingRows extends Model
     use HasFactory;
     public $timestamps = false; // Desactivar las marcas de tiempo
 
-    protected $fillable = ['buying_id','product_id','price','iva','amount','subtotal','total'];
+    protected $fillable = ['buying_id','product_id', 'supplier_id','price','iva','amount','subtotal','total'];
 
     /**
      * Get the product associated with the inventory record.

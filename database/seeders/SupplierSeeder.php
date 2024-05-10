@@ -18,5 +18,10 @@ class SupplierSeeder extends Seeder
             "address"=>"Camino de San Pedro 1502, Pedregal de Linda Vista, 67110 Guadalupe, N.L.",
             "contact_phone"=>"8121300850",
         ]);
+        Supplier::create([
+            "name"=>"Marinela",
+            "address"=>"Tecmilagros",
+            "contact_phone"=>"8121300851",
+        ]);
     }
 }

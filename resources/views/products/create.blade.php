@@ -68,6 +68,23 @@
                             </div>
                         </div>
 
+                        <!-- Sección de proveedores -->
+                        <div class="form-group row d-flex justify-content-center" id="proveedores">
+                            <div class="producto form-group row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                                    <div class="form-group">
+                                        <label for="supplier_1" >Supplier:</label>
+                                        <select name="suppliers[1][id]" class="form-select" required>
+                                            <option value="">Select a supplier</option>
+                                            @foreach($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="is_active" class="col-md-4 col-form-label text-md-right">Status:</label>
                             <div class="col-md-6">
@@ -81,6 +98,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <button type="button" class="btn btn-primary" onclick="agregarProveedor()">Add Suppplier</button>
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                         </div>
@@ -90,4 +108,39 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+let contadorProveedores = 1;
+
+function agregarProveedor() {
+    contadorProveedores++;
+    const nuevoProveedor = `
+                        <div class="producto form-group row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                                <div class="form-group">
+                                    <label for="supplier_${contadorProveedores}" >Supplier:</label>
+                                    <select name="suppliers[${contadorProveedores}][id]" class="form-select" required>
+                                        <option value="">Select a supplier</option>
+                                        @foreach($suppliers as $supplier)
+                                            <option value={{ $supplier->id }}>{{ $supplier->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            ${contadorProveedores > 1 ? '<button type="button" class="btn btn-primary col-xs-12 col-sm-12 col-md-4 mt-2 mx-auto" onclick="eliminarProveedor(this)">Eliminar</button>' : ''}
+                        </div>`;
+    document.getElementById('proveedores').insertAdjacentHTML('beforeend', nuevoProveedor);
+}
+
+    function eliminarProveedor(botonEliminar) {
+        contadorProveedores--;
+        // Obtener el div del producto que contiene el botón Eliminar
+        const divProveedor = botonEliminar.parentNode;
+
+        // Eliminar el div del producto
+        divProveedor.remove();
+    }
+</script>
 @endsection

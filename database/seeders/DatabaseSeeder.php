@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
+            SupplierSeeder::class,
             InventorySeeder::class,
             InventoryMovementSeeder::class,
             InventoryLogSeeder::class,
             ModuleSeeder::class,
             OperationSeeder::class,
-            SupplierSeeder::class,
         ]);
     }
 }

@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use App\Models\Supplier;
 
 class Inventory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id','amount','is_active'];
+    protected $fillable = ['product_id','amount','is_active', 'supplier_id'];
 
     /**
      * Get the product associated with the inventory record.
@@ -18,6 +19,14 @@ class Inventory extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    /**
+     * Get the inventory associated with the inventory record.
+     */
+    public function inventory()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 
     /**

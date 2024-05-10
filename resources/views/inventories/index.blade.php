@@ -71,23 +71,18 @@
     <table class="table table-bordered text">
         <thead class="thead">
             <tr>
-                <th>Id</th>
-                <th>Amount</th>
                 <th>Product</th>
+                <th>Amount</th>
                 <th>Status</th>
                 <th>Created_at</th>
-                @if (Auth::check() && Auth::user()->hasRole('Admin'))
-                    <th>Actions</th>
-                @endif
             </tr>
         </thead>
         <tbody>
             @forelse ($inventories as $inventory)
 
                 <tr>
-                    <th>{{$inventory->id}}</th>
-                    <th class="fw-bold" >{{$inventory->amount}}</th>
-                    <th>{{$inventory->product->name}}</th>
+                    <th>{{$inventory->product_name}}</th>
+                    <th class="fw-bold" >{{$inventory->total_inventory}}</th>
                     <th>
                         @if ($inventory->is_active)
                             <span class="badge bg-success fs-6">Activo</span>
@@ -96,16 +91,6 @@
                         @endif
                     </th>
                     <th>{{$inventory->created_at}}</th>
-                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
-                    <th>
-
-                        <form action="{{route('inventories.destroy', $inventory)}}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                    </th>
-                    @endif
                 </tr>
 
             @empty

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('amount')->comment('Unidades totales');
             $table->integer('product_id')->nullable()->unsigned()->comment('Producto');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('supplier_id')->nullable()->unsigned()->comment('Proveedor');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
 
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');

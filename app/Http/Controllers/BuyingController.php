@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use App\Models\Supplier;
 use App\Models\Buying;
 use App\Models\BuyingRows;
 use App\Models\Inventory;
@@ -29,16 +30,33 @@ class BuyingController extends Controller
     public function create(): View
     {
         $products = Product::all();
-        return view(('buyings.create'), compact('products'));
+        $suppliers = Supplier::all();
+        return view(('buyings.create'), compact('products', 'suppliers'));
     }
 
     public function store(Request $request) {
         // Validación de datos
         $request->validate([
             'client' => 'required|string',
-            'products.*.id' => 'required|exists:products,id',
+            'products.*.p_id' => 'required|exists:products,id',
+            'products.*.s_id' => 'required|exists:suppliers,id',
             'products.*.cantidad' => 'required|integer|min:1'
         ]);
+
+        // Guardar los detalles de los productos
+        foreach ($request->products as $product) {
+            $inventory = Inventory::where('product_id', $product['p_id'])
+            ->where('supplier_id', $product['s_id'])
+            ->first();
+
+            if (!$inventory) {
+                $product_i = Product::where('id', $product['p_id'])->first();
+                $supplier_i = Supplier::where('id', $product['s_id'])->first();
+
+                // Si no se encuentra una entrada en la tabla inventories para el producto y el proveedor dados
+                return redirect()->route('buyings.create')->with('error', 'El producto ' . $product_i->name . ' no lo provee ' . $supplier_i->name);
+            }
+        }
 
         // Crear la venta en la base de datos
         $buying = Buying::create([
@@ -50,11 +68,12 @@ class BuyingController extends Controller
 
         // Guardar los detalles de los productos
         foreach ($request->products as $product) {
-            $product_model = Product::findOrFail($product['id']);
+            $product_model = Product::findOrFail($product['p_id']);
             $subtotal = $product['cantidad'] * $product_model->base_cost;
             $subtotal_buying += $product['cantidad'] * $product_model->base_cost;
             $row = new BuyingRows([
-                'product_id' => $product['id'],
+                'product_id' => $product['p_id'],
+                'supplier_id' => $product['s_id'],
                 'price' => $product_model->base_cost,
                 'amount' => $product['cantidad'],
                 'subtotal' => $subtotal,
@@ -64,7 +83,10 @@ class BuyingController extends Controller
             $buying->rows()->save($row);
 
             // Actualizar las compras en el inventario
-            $inventario = Inventory::findOrFail($product['id']);
+            $inventario = Inventory::where('product_id', $product['p_id'])
+                ->where('supplier_id', $product['s_id'])
+                ->firstOrFail();
+
             $inventario->aumentar($product['cantidad']);
 
             // Registro del inventario
