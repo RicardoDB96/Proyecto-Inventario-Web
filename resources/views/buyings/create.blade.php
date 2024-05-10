@@ -118,7 +118,7 @@
                                         <input type="number" name="products[${contadorProductos}][cantidad]" class="form-control" placeholder="Cantidad" required>
                                     </div>
                                 </div>
-                                ${contadorProductos > 1 ? '<button type="button" class="btn btn-primary col-xs-12 col-sm-12 col-md-4 mt-2 mx-auto" onclick="eliminarProducto(this)">Eliminar</button>' : ''}
+                                ${contadorProductos > 1 ? '<button type="button" class="btn btn-primary col-xs-12 col-sm-12 col-md-5 mt-4 mx-auto" onclick="eliminarProducto(this)">Eliminar</button>' : ''}
                             </div>`;
         document.getElementById('productos').insertAdjacentHTML('beforeend', nuevoProducto);
     }

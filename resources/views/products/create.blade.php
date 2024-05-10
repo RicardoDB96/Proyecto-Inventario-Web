@@ -84,18 +84,16 @@
                         </div>
 
                         <!-- Sección de proveedores -->
-                        <div class="form-group row d-flex justify-content-center" id="proveedores">
-                            <div class="producto form-group row">
-                                <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
-                                    <div class="form-group">
-                                        <label for="supplier_1" >Supplier:</label>
-                                        <select name="suppliers[1][id]" class="form-select" required>
-                                            <option value="">Select a supplier</option>
-                                            @foreach($suppliers as $supplier)
-                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                        <div id="proveedores">
+                            <div class="form-group row">
+                                <label for="supplier_1" class="col-md-4 col-form-label text-md-right">Supplier:</label>
+                                <div class="col-md-6">
+                                    <select name="suppliers[1][id]" class="form-select" id="">
+                                        <option value="">-- Select a supplier --</option>
+                                        @foreach($suppliers as $supplier)
+                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -132,20 +130,20 @@ let contadorProveedores = 1;
 function agregarProveedor() {
     contadorProveedores++;
     const nuevoProveedor = `
-                        <div class="producto form-group row">
-                            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
-                                <div class="form-group">
-                                    <label for="supplier_${contadorProveedores}" >Supplier:</label>
-                                    <select name="suppliers[${contadorProveedores}][id]" class="form-select" required>
-                                        <option value="">Select a supplier</option>
+                        <div class="form-group row ">
+                                <label for="supplier_${contadorProveedores}" class="col-md-4 col-form-label text-md-right">Supplier:</label>
+                                <div class="col-md-6">
+                                    <select name="suppliers[${contadorProveedores}][id]" class="form-select" id="">
+                                        <option value="">-- Select a supplier --</option>
                                         @foreach($suppliers as $supplier)
-                                            <option value={{ $supplier->id }}>{{ $supplier->name }}</option>
+                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            ${contadorProveedores > 1 ? '<button type="button" class="btn btn-primary col-xs-12 col-sm-12 col-md-4 mt-2 mx-auto" onclick="eliminarProveedor(this)">Eliminar</button>' : ''}
+                                <label for="supplier_${contadorProveedores}" class="col-md-5 col-form-label text-md-right">.......</label>
+                                ${contadorProveedores > 1 ? '<button type="button" class="btn btn-primary col-md-4" onclick="eliminarProveedor(this)">Eliminar</button>' : ''}
                         </div>`;
+
     document.getElementById('proveedores').insertAdjacentHTML('beforeend', nuevoProveedor);
 }
 

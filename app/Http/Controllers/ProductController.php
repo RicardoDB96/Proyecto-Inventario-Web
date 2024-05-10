@@ -48,14 +48,14 @@ class ProductController extends Controller
         $image = $request->file('image');
 
             $fileName = $image->getClientOriginalName();
-    
+
             $imageName = $fileName;
             $image->move(public_path('img'), $imageName);
-    
+
         $productData = $request->except('image');
         $productData['image'] = 'img/' . $imageName;
         $product = Product::create($productData);
-    
+
 
         // Se obtienen los IDs de los proveedores asociados al producto
         $supplierIds = $request->suppliers;
