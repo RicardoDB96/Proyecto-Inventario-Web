@@ -125,4 +125,27 @@ class CategoryController extends Controller
         return view('categories.logs', compact('logs'));
     }
 
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $categories = Category::where('name','LIKE', '%' . $search_text . '%')
+        ->paginate(3);
+
+        $categories->appends(['query' => $search_text]);
+
+        return view('categories.search',compact('categories'));
+    }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $categories = Category::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $categories->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('categories.index',compact('categories'));
+    }
+
 }

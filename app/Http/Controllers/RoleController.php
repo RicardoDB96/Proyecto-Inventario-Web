@@ -123,4 +123,27 @@ class RoleController extends Controller
         $logs = RoleLogs::all();
         return view('roles.logs', compact('logs'));
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');
+        $roles = Role::where('name','LIKE', '%' . $search_text . '%')
+        ->paginate(3);
+
+        $roles->appends(['query' => $search_text]);
+
+        return view('roles.search',compact('roles'));
+    }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $roles = Role::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $roles->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('roles.index',compact('roles'));
+    }
 }

@@ -88,4 +88,30 @@ class InventoryController extends Controller
         $inventory->delete();
         return redirect()->route('inventories.index')->with('success','The Inventory have been successfully deleted!');
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $inventories = Inventory::where('amount','LIKE', '%' . $search_text . '%')
+        ->orWhereHas('product', function ($query) use ($search_text) {
+            $query->where('name', 'LIKE', '%' . $search_text . '%');
+        })
+        ->paginate(3);
+
+        $inventories->appends(['query' => $search_text]);
+
+        return view('inventories.search',compact('inventories'));
+    }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $inventories = Inventory::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $inventories->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('inventories.index',compact('inventories'));
+    }
 }

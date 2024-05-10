@@ -4,7 +4,9 @@
 <div class="place">
     <h1>Suppliers</h1>
     <div class="button-group">
+    @if (Auth::check() && Auth::user()->hasRole('Admin'))
         <a href="{{ route('suppliers.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Supplier</button></a>
+        @endif
         <a href="{{ route('supplier.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
     </div>
 </div>
@@ -14,25 +16,52 @@
         <a href="{{ route('supplier.logs') }}" class="linkButton"><button class="button">See Logs</button></a>
     </div>
 </div>
-<div class="place" id="placeCel2">
-    <select name="categorias">
-        <option value="">-- Buscar por: --</option>
-        <option value="1">Nombre</option>
-        <option value="2">Fecha</option>
-        <option value="3">Cantidad</option>
-    </select>
-</div>
-<div class="place">
-    <div class="searchBox">
-        <input type="text" name="base_cost"  placeholder="Barra de busqueda..." >
+<div class="place d-flex column flex-wrap align-items-end ">
+    <div class="searchBox form-group">
+        <form method="GET" action="{{route('supplier.search')}}" class="d-flex">
+            <input class="form-control" name="query"  placeholder="Search..." >
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
 
-    <select name="categorias" id="categoriasPlace">
-        <option value="">-- Buscar por: --</option>
-        <option value="1">Nombre</option>
-        <option value="2">Fecha</option>
-        <option value="3">Cantidad</option>
-    </select>
+    <div class=" form-group mt-3" id="categoriasPlace">
+        <form method="GET" action="/supplier/filter" class="d-flex column flex-wrap justify-content-center">
+            <div>
+                <label>Start Date: </label>
+                <input type="date" name="start_date" class="form-control">
+            </div>
+            <div>
+                <label>End Date: </label>
+                <input type="date" name="end_date" class="form-control">
+            </div>
+
+            <div class="d-flex align-items-end ">
+                <button type="submit" class="btn btn-primary py-3 px-3">Filter</button>
+                <a href="{{ route('suppliers.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div class="place" id="placeCel2">
+    <div class="form-group">
+        <form method="GET" action="/supplier/filter" class="d-flex row flex-wrap justify-content-center">
+            <div class="mb-3">
+                <label>Start Date: </label>
+                <input type="date" name="start_date" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>End Date: </label>
+                <input type="date" name="end_date" class="form-control">
+            </div>
+
+            <div class="d-flex align-items-end justify-content-center mb-3">
+                <button type="submit" class="btn btn-primary py-3 px-3 ">Filter</button>
+                <a href="{{ route('suppliers.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
+            </div>
+        </form>
+    </div>
 </div>
 
     @if (Session::get('success'))
@@ -51,7 +80,9 @@
                     <th>Phone</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    <th>Actions</th>
+                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
+                        <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -70,6 +101,7 @@
                             @endif
                         </th>
                         <th>{{$supplier->created_at}}</th>
+                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
                         <th>
                             <a href="{{route('suppliers.edit', $supplier)}}" class="btn btn-warning">Editar</a>
 
@@ -79,6 +111,7 @@
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </th>
+                        @endif
                     </tr>
 
                 @empty

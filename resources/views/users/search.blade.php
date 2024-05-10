@@ -4,14 +4,14 @@
 <div class="place">
     <h1>Users</h1>
     <div class="button-group">
-    @if (Auth::check() && Auth::user()->hasRole('Admin'))
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
-        @endif
+        <a href="{{route('users.create')}}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
+        <a href="{{ route('users.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel1">
     <div class="button-group">
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button">New User</button></a>
+        <a href="{{route('users.create')}}" class="linkButton"><button class="button" >New User</button></a>
+        <a href="{{ route('users.index') }}" class="linkButton"><button class="button">Back</button></a>
     </div>
 </div>
 <div class="place d-flex column flex-wrap align-items-end ">
@@ -79,9 +79,7 @@
                     <th>Email</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
-                        <th>Actions</th>
-                    @endif
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,17 +99,15 @@
                             @endif
                         </th>
                         <th>{{$user->created_at}}</th>
-                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
-                            <th>
-                                <a href="{{route('users.edit', $user)}}" class="btn btn-warning">Editar</a>
+                        <th>
+                            <a href="{{route('users.edit', $user)}}" class="btn btn-warning">Editar</a>
 
-                                <form action="{{route('users.destroy', $user)}}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </th>
-                        @endif
+                            <form action="{{route('users.destroy', $user)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </th>
                     </tr>
 
                 @empty

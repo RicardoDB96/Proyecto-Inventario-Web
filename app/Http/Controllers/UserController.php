@@ -167,4 +167,32 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('success','The User have been successfully deleted!');
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $users = User::where('name','LIKE', '%' . $search_text . '%')
+        ->orWhere('last_name','LIKE','%'.$search_text.'%')
+        ->orWhere('email','LIKE','%'.$search_text.'%')
+        ->orWhereHas('role', function ($query) use ($search_text) {
+            $query->where('name', 'LIKE', '%' . $search_text . '%');
+        })
+        ->paginate(3);
+
+        $users->appends(['query' => $search_text]);
+
+        return view('users.search',compact('users'));
+    }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $users = User::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $users->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('users.index',compact('users'));
+    }
 }

@@ -123,4 +123,29 @@ class SupplierController extends Controller
         $logs = SupplierLogs::all();
         return view('suppliers.logs', compact('logs'));
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $suppliers = Supplier::where('name','LIKE', '%' . $search_text . '%')
+        ->orWhere('address','LIKE','%'.$search_text.'%')
+        ->orWhere('contact_phone','LIKE','%'.$search_text.'%')
+        ->paginate(3);
+
+        $suppliers->appends(['query' => $search_text]);
+
+        return view('suppliers.search',compact('suppliers'));
+    }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $suppliers = Supplier::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $suppliers->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('suppliers.index',compact('suppliers'));
+    }
 }

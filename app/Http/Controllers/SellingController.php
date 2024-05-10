@@ -112,4 +112,27 @@ class SellingController extends Controller
         // Pasar los datos del producto a la vista
         return view('sellings.show', compact('selling_rows'));
     }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->query('query');;
+        $sellings = Selling::where('client','LIKE', '%' . $search_text . '%')
+        ->paginate(3);
+
+        $sellings->appends(['query' => $search_text]);
+
+        return view('sellings.search',compact('sellings'));
+    }
+
+    public function filter(Request $request){
+        $startDate=$request->input('start_date');
+        $endDate=$request->input('end_date');
+
+        $sellings = Selling::whereBetween('created_at', [$startDate, $endDate])
+                            ->paginate(4);
+                            $sellings->appends(['start_date' => $startDate])
+                                    ->appends(['end_date'=>$endDate]);
+
+        return view('sellings.index',compact('sellings'));
+    }
 }

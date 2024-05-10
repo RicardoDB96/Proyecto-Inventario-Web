@@ -18,6 +18,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SellingController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,6 +121,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/role/logs', [RoleController::class, 'logs'])->name('role.logs');
 
     /**SEARCH */
-    Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+    Route::get('/product/search', [ProductController::class, 'search'])->name('product.search');
+    Route::get('/role/search', [RoleController::class, 'search'])->name('role.search');
+    Route::get('/supplier/search', [SupplierController::class, 'search'])->name('supplier.search');
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
+    Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
+    Route::get('/selling/search', [SellingController::class, 'search'])->name('selling.search');
+    Route::get('/inventory/search', [InventoryController::class, 'search'])->name('inventory.search');
+    Route::get('/bitacory/search', [InventoryLogController::class, 'search'])->name('bitacory.search');
+    Route::get('/buying/search', [BuyingController::class, 'search'])->name('buying.search');
 
+    /*FILTER*/
+    Route::get('/product/filter', [ProductController::class, 'filter']);
+    Route::get('/inventory/filter', [InventoryController::class, 'filter']);
+    Route::get('/bitacory/filter', [InventoryLogController::class, 'filter']);
+    Route::get('/category/filter', [CategoryController::class, 'filter']);
+    Route::get('/supplier/filter', [SupplierController::class, 'filter']);
+    Route::get('/role/filter', [RoleController::class, 'filter']);
+    Route::get('/user/filter', [UserController::class, 'filter']);
+    Route::get('/selling/filter', [SellingController::class, 'filter']);
+    Route::get('/buying/filter', [BuyingController::class, 'filter']);
 });

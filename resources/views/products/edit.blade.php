@@ -61,9 +61,10 @@
                             <div class="col-md-6">
                                 <select name="category_id" class="form-select" id="">
                                     <option value="">-- Elige la categoría --</option>
-                                    <option value="1" @selected("1" == $product->category_id)>1</option>
-                                    <option value="2" @selected("2" == $product->category_id)>2</option>
-                                    <option value="3" @selected("3" == $product->category_id)>3</option>
+                                    
+                                    @foreach(\App\Models\Category::all() as $category)
+                                        <option value="{{ $category->id }}" @selected($category->id == $product->category_id)>{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

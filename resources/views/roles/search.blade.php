@@ -2,28 +2,30 @@
 
 @section('content')
 <div class="place">
-    <h1>Users</h1>
+    <h1>Roles</h1>
     <div class="button-group">
-    @if (Auth::check() && Auth::user()->hasRole('Admin'))
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button" id="buttonPlace">New User</button></a>
-        @endif
+        <a href="{{ route('roles.create') }}" class="linkButton"><button class="button" id="buttonPlace">New Role</button></a>
+        <a href="{{ route('role.logs') }}" class="linkButton"><button class="button" id="buttonPlace">See Logs</button></a>
+        <a href="{{ route('roles.index') }}" class="linkButton"><button class="button" id="buttonPlace">Back</button></a>
     </div>
 </div>
 <div class="place" id="placeCel1">
     <div class="button-group">
-        <a href="{{ route('users.create') }}" class="linkButton"><button class="button">New User</button></a>
+        <a href="{{ route('roles.create') }}" class="linkButton"><button class="button" >New Role</button></a>
+        <a href="{{ route('role.logs') }}" class="linkButton"><button class="button" >See Logs</button></a>
+        <a href="{{ route('roles.index') }}" class="linkButton"><button class="button">Back</button></a>
     </div>
 </div>
 <div class="place d-flex column flex-wrap align-items-end ">
     <div class="searchBox form-group">
-        <form method="GET" action="{{route('user.search')}}" class="d-flex">
+        <form method="GET" action="{{route('role.search')}}" class="d-flex">
             <input class="form-control" name="query"  placeholder="Search..." >
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
 
     <div class=" form-group mt-3" id="categoriasPlace">
-        <form method="GET" action="/user/filter" class="d-flex column flex-wrap justify-content-center">
+        <form method="GET" action="/role/filter" class="d-flex column flex-wrap justify-content-center">
             <div>
                 <label>Start Date: </label>
                 <input type="date" name="start_date" class="form-control">
@@ -35,7 +37,7 @@
 
             <div class="d-flex align-items-end ">
                 <button type="submit" class="btn btn-primary py-3 px-3">Filter</button>
-                <a href="{{ route('users.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
+                <a href="{{ route('roles.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
             </div>
         </form>
     </div>
@@ -44,7 +46,7 @@
 
 <div class="place" id="placeCel2">
     <div class="form-group">
-        <form method="GET" action="/user/filter" class="d-flex row flex-wrap justify-content-center">
+        <form method="GET" action="/role/filter" class="d-flex row flex-wrap justify-content-center">
             <div class="mb-3">
                 <label>Start Date: </label>
                 <input type="date" name="start_date" class="form-control">
@@ -56,7 +58,7 @@
 
             <div class="d-flex align-items-end justify-content-center mb-3">
                 <button type="submit" class="btn btn-primary py-3 px-3 ">Filter</button>
-                <a href="{{ route('users.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
+                <a href="{{ route('roles.index') }}"><button class="btn btn-secondary py-3 px-3" type="button">Clean</button></a>
             </div>
         </form>
     </div>
@@ -74,44 +76,34 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Last Name</th>
-                    <th>Role</th>
-                    <th>Email</th>
                     <th>Status</th>
                     <th>Created_at</th>
-                    @if (Auth::check() && Auth::user()->hasRole('Admin'))
-                        <th>Actions</th>
-                    @endif
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($users as $user)
+                @forelse ($roles as $role)
 
                     <tr>
-                        <th>{{$user->id}}</th>
-                        <th class="fw-bold" ><a href="{{route('users.show', $user)}}">{{$user->name}}</a></th>
-                        <th>{{$user->last_name}}</th>
-                        <th>{{$user->role->name}}</th>
-                        <th>{{$user->email}}</th>
+                        <th>{{$role->id}}</th>
+                        <th class="fw-bold" ><a href="{{route('roles.show', $role)}}">{{$role->name}}</a></th>
                         <th>
-                            @if ($user->is_active)
+                            @if ($role->is_active)
                                 <span class="badge bg-success fs-6">Activo</span>
                             @else
                                 <span class="badge bg-secondary fs-6">Inactivo</span>
                             @endif
                         </th>
-                        <th>{{$user->created_at}}</th>
-                        @if (Auth::check() && Auth::user()->hasRole('Admin'))
-                            <th>
-                                <a href="{{route('users.edit', $user)}}" class="btn btn-warning">Editar</a>
+                        <th>{{$role->created_at}}</th>
+                        <th>
+                            <a href="{{route('roles.edit', $role)}}" class="btn btn-warning">Editar</a>
 
-                                <form action="{{route('users.destroy', $user)}}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </th>
-                        @endif
+                            <form action="{{route('roles.destroy', $role)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </th>
                     </tr>
 
                 @empty
@@ -122,6 +114,6 @@
 
             </tbody>
         </table>
-        {{$users->links()}}
+        {{$roles->links()}}
     </div>
 @endsection
