@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="place">
-        <h1>Welcome to Fostrify Inventory System!</h1>
+        <h1>Welcome to Frostify Inventory System!</h1>
     </div>
 
 
