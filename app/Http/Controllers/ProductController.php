@@ -39,9 +39,20 @@ class ProductController extends Controller
         $request->validate([
             'name' =>'required',
             'is_active' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $product = Product::create($request->all());
+        $image = $request->file('image');
+
+            $fileName = $image->getClientOriginalName();
+    
+            $imageName = $fileName;
+            $image->move(public_path('img'), $imageName);
+    
+        $productData = $request->except('image');
+        $productData['image'] = 'img/' . $imageName;
+        $product = Product::create($productData);
+    
 
         // Se crea el inventario de manera inmediata cuando se crea el producto
         Inventory::create([

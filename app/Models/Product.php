@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','base_price','base_cost','category_id','is_active'];
+    protected $fillable = ['name','image','description','base_price','base_cost','category_id','is_active'];
 
     /**
     * Get the category associated with the inventory record.

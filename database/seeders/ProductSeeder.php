@@ -15,6 +15,7 @@ class ProductSeeder extends Seeder
     {
         Product::create([
             "name"=>"Nieve vainilla",
+            "image"=> 'img/Nieve de Vainilla.png',
             "description"=>"La nieve de vainilla está hecha de leche, crema, azúcar y extracto de vainilla.",
             "base_price"=>100,
             "base_cost"=>75,
@@ -23,6 +24,7 @@ class ProductSeeder extends Seeder
 
         Product::create([
             "name"=>"Nieve fresa",
+            "image"=>'img/Nieve de Fresa.png',
             "description"=>"La nieve de fresa está hecha de leche, crema, azúcar y puré de fresas.",
             "base_price"=>90,
             "base_cost"=>60,
@@ -31,6 +33,7 @@ class ProductSeeder extends Seeder
 
         Product::create([
             "name"=>"Nieve chocolate",
+            "image"=>'img/Nieve de Chocolate.png',
             "description"=>"La nieve de chocolate está hecha de leche, crema, azúcar y cacao en polvo o chocolate derretido.",
             "base_price"=>110,
             "base_cost"=>90,

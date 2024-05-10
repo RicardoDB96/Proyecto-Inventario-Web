@@ -75,6 +75,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Product Name</th>
+                    <th>Image</th>
                     <th>Description</th>
                     <th>Base Price</th>
                     <th>Base Cost</th>
@@ -92,6 +93,7 @@
                     <tr class="data">
                         <th>{{$product->id}}</th>
                         <th class="fw-bold" ><a href="{{route('products.show', $product)}}">{{$product->name}}</a></th>
+                        <th><img src="{{ asset($product->image) }}" alt="Product Image" style="max-width: 100px; max-height: 100px; border-radius: 10px;"></th>
                         <th class="setWidth concat"><div class="desc">{{$product->description}}</div></th>
                         <th>{{$product->base_price}}</th>
                         <th>{{$product->base_cost}}</th>
