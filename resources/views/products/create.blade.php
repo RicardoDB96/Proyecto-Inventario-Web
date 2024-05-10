@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('products.store') }}" method="POST">
+                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
 
@@ -36,9 +36,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Set Image:</label>
+                            <div class="col-md-6">
+                                <label for="input-file" id="drop-area" class="form-control">
+                                    <input type="file" accept="image/*" id="input-file" name="image" hidden>
+                                    <div id="img-view">
+                                        <img src="{{ asset('img/icon.png') }}">
+                                            <p>Browse or drop an image</p>
+                                            <span>Upload any jpeg,png,jpg image</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <script type="text/javascript" src="{{asset('js/dragDrop.js') }}"></script>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description:</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" style="height:150px;" name="description" placeholder="Description..."></textarea>
+                                <textarea class="form-control" style="height:50px;" name="description" placeholder="Description..."></textarea>
                             </div>
                         </div>
 

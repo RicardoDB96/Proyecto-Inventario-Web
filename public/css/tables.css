@@ -13,6 +13,7 @@ div.card-header {
 
   input.form-control,
   textarea.form-control,
+  label.form-control,
   select.form-select {
     background-color: var(--card-control);
   }
@@ -22,6 +23,31 @@ div.card-header {
     background-color: var(--card-control);
   }
 
+  #drop-area{
+    height: 200px;
+    text-align: center;
+    color: #4e5254;
+  }
+  
+  #img-view{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  #img-view img{
+    width: 50px;
+    margin-top: 30px;
+  }
+  
+  #img-view span{
+    display: block;
+    font-size: 10px;
+    color: #4e5254;
+    margin-top: 60px;
+  }
 
   /* TABLA INDEX */
 

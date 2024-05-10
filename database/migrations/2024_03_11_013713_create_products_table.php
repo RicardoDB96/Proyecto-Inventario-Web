@@ -16,6 +16,7 @@ return new class extends Migration
             //PRODUCTS INVENTORY SYSTEM
             $table->increments('id')->comment('Producto');
             $table->string('name',255)->comment('Nombre del producto');
+            $table->string('image',255)->comment('Imagen del producto');
             $table->string('description',255)->nullable()->comment('Descripción del producto');
             $table->float('base_price',12,4)->nullable()->comment('Precio del producto');
             $table->float('base_cost',12,4)->nullable()->comment('Costo del producto');
