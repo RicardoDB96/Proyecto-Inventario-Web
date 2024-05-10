@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
@@ -15,6 +16,8 @@ use App\Http\Controllers\BitacoryController;
 use App\Http\Controllers\BuyingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SellingController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,27 @@ use App\Http\Controllers\SellingController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/google-auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+ 
+Route::get('/google-auth/callback', function () {
+    $user_google = Socialite::driver('google')->stateless()->user();
+ 
+    $user = User::updateOrCreate([
+        'google_id' => $user_google->id,
+    ], [
+        'name' => $user_google->name,
+        'email' => $user_google->email,
+        'role_id' => 1,
+        'is_active' => true,
+    ]);
+
+    Auth::login($user);
+
+    return redirect('/');
+});
 
 Route::view('/', 'welcome')->middleware('auth:sanctum');
 

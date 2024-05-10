@@ -65,6 +65,10 @@
 
           <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
         </form>
+        
+        <a href="/google-auth/redirect">
+            <button class="btn btn-custom">Iniciar Sesión con Google</button>
+        </a>
       </div>
     </div>
   </div>

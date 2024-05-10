@@ -17,10 +17,11 @@ return new class extends Migration
             //USER INVENTORY SYSTEM
             $table->increments('id')->comment('Usuario');
             $table->string('name',255)->comment('Nombre del usuario');
-            $table->string('last_name',255)->comment('Apellido del usuario');
+            $table->string('last_name',255)->nullable()->comment('Apellido del usuario');
             $table->integer('role_id')->unsigned()->comment('Rol del usuario');
             $table->string('email',255)->comment('Correo del usuario');
-            $table->string('password',255)->comment('Contraseña del usuario');
+            $table->string('password',255)->nullable()->comment('Contraseña del usuario');
+            $table->string('google_id')->nullable()->comment('Id de google');
 
             //Datos de creación y modificación
 			$table->string('notes', 1024)->nullable()->comment('Notas');
