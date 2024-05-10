@@ -53,7 +53,7 @@ Route::get('/google-auth/callback', function () {
             'email' => $user_google->email,
             'google_id' => $user_google->id,
             'avatar_url' => $user_google->avatar,
-            'role_id' => 1,
+            'role_id' => 2,
             'is_active' => true,
         ]
     );
@@ -75,7 +75,7 @@ Route::get('/github-auth/callback', function () {
             'email' => $user_github->email,
             'github_id' => $user_github->id,
             'avatar_url' => $user_github->avatar,
-            'role_id' => 1,
+            'role_id' => 2,
             'is_active' => true,
         ]
     );
