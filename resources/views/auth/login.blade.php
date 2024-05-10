@@ -66,13 +66,23 @@
           <button type="submit" class="btn btn-custom">Log in</button>
         </form>
         
-        <a href="/google-auth/redirect">
-            <button class="btn btn-custom">Log in with Google</button>
-        </a>
+        <div class="text-center">
+          <div class="row">
+            <!-- Botón de login con Google -->
+            <div class="col-6">
+              <a href="/google-auth/redirect">
+                <button class="btn btn-custom w-100">Log in with Google</button>
+              </a>
+            </div>
 
-        <a href="/github-auth/redirect">
-            <button class="btn btn-custom">Log in with Github</button>
-        </a>
+            <!-- Botón de login con Github -->
+            <div class="col-6">
+              <a href="/github-auth/redirect">
+                <button class="btn btn-custom w-100">Log in with Github</button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
