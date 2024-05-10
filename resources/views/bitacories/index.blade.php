@@ -88,7 +88,7 @@
                                 <span class="badge bg-secondary fs-6">Venta</span>
                             @endif
                         </th>
-                        <th>{{$inventory_log->product->name}}</a></th>
+                        <th>{{$inventory_log->inventory->product->name}}</a></th>
                         <th>{{$inventory_log->initial_inventory}}</th>
                         <th>{{$inventory_log->delta_inventory}}</th>
                         <th>{{$inventory_log->final_inventory}}</th>
