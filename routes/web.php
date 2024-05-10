@@ -18,8 +18,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SellingController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
+use App\Models\Inventory;
+use App\Models\InventoryLog;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
